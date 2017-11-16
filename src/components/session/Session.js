@@ -1,14 +1,26 @@
 import React from 'react'
 
-import Dishes from './Dishes'
+import { getSessionInfo, getSessionDishes } from './getSession'
 
-const Session = ({ state, match }) => {
+import Dishes from './Dishes'
+import MDSpinner from 'react-md-spinner'
+
+const Session = ({ state, dispatch, match }) => {
+  // dispatch({type: 'SET_LOADING', payload: true})
+  getSessionInfo('sodfk').onSnapshot(response => {
+    dispatch({
+        type: 'RECEIVE_SESSION',
+        payload: response.data()
+      })
+    dispatch({type: 'SET_LOADING', payload: false})
+  })
+
   function handleCopy () {
     console.log('copying')
     // `https://gitlab.cwp.govt.nz`.select();
     document.execCommand("Copy")
   }
-
+  if (state.loading) return <MDSpinner />
   return (
     <div className="container">
       <div className="section">

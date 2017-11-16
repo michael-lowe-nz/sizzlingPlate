@@ -18,7 +18,7 @@ const App = ({state, dispatch, addDish}) => (
 
       <Route exact path='/' component={Home} />
       <Route path='/about' component={About} />
-      <Route path='/session' render={(props) => <Session state={state}/>}/>
+      <Route path='/session' render={(props) => <Session state={state} dispatch={dispatch}/>}/>
 
     </div>
   </Router>
