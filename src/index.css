@@ -8480,6 +8480,8 @@ label.panel-block {
     .session-users .user:hover {
       border-color: #9e9797; }
     .session-users .user p {
-      color: #9e9797;
       line-height: 85px;
       text-align: center; }
+  .session-users .user.is-active {
+    border-color: #ff9100;
+    color: #ff9100; }

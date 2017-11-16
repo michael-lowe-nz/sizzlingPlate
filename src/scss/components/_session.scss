@@ -16,9 +16,14 @@
     }
 
     p {
-      color: $grey;
       line-height: 85px;
       text-align: center;
     }
+
+  }
+
+  .user.is-active {
+    border-color: $orange;
+    color: $orange;
   }
 }
