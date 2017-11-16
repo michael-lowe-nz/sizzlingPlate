@@ -2,6 +2,9 @@ module.exports = (state, action) => {
   const newState = require('clone')(state)
   const {type, payload} = action
   switch (type) {
+    case 'SET_LOADING':
+      newState.loading = payload
+      return newState
     case 'RECEIVE_SESSION':
       newState.title = payload.title
       newState.location = payload.Location

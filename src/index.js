@@ -1,12 +1,11 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 import './index.css'
-import App from './App'
+import App from './components/App'
 import registerServiceWorker from './registerServiceWorker'
 import { createStore } from 'redux'
 import reducer from './reducer'
 import firebase from 'firebase/app'
-import openSocket from 'socket.io-client'
 import config from './config'
 
 require('firebase/auth')
@@ -16,6 +15,7 @@ firebase.initializeApp(config)
 const db = firebase.firestore()
 
 const initialState = {
+  loading: false,
   dishInput: '',
   dishes: []
 }
@@ -27,6 +27,7 @@ const myDishes = mySession.collection('dishes')
 
 const addDish = (dish) => myDishes.add(dish)
 
+
 mySession.onSnapshot(response => {
   dispatch({
     type: 'RECEIVE_SESSION',
@@ -35,20 +36,16 @@ mySession.onSnapshot(response => {
 })
 
 myDishes.onSnapshot(response => {
-  console.log('Change detected', response)
-  response.docChanges.forEach(changedDish => {
-    if(getState().dishes.some(dish => dish.name === changedDish.name)) {
+  response.forEach(changedDish => {
       dispatch({
         type: 'RECEIVE_DISH',
         payload: changedDish.data()
       })
-    }
   })
 })
 
-
 subscribe(() => {
-  ReactDOM.render(<App state={getState()} dispatch={dispatch} addDish={addDish}/>, document.getElementById('root'))
+  render(<App state={getState()} dispatch={dispatch} addDish={addDish}/>, document.getElementById('root'))
   registerServiceWorker()
 })
 
