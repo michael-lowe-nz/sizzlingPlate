@@ -22,16 +22,15 @@ const App = ({state, dispatch, addDish}) => {
         console.log('saved:', response)
       })
   }
-  if (state.loading) return <p>Loading</p>
   return (
     <Router>
-      <div>
+      <div className="body">
         <Nav />
 
         <Route exact path='/' component={Home} />
         <Route path='/about' component={About} />
+        <Route path='/session' render={(props) => <Session state={state}/>}/>
 
-        <Footer />
       </div>
     </Router>
   )
