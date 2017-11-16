@@ -1,0 +1,24 @@
+@import '../colors';
+
+.session-users {
+  display: flex;
+  width: 100%;
+
+  .user {
+    border: solid 1px $light-grey;
+    margin: 0 5px;
+    height: 85px;
+    width: 85px;
+    border-radius: 50%;
+
+    &:hover {
+      border-color: $grey;
+    }
+
+    p {
+      color: $grey;
+      line-height: 85px;
+      text-align: center;
+    }
+  }
+}

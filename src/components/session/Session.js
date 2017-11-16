@@ -4,13 +4,32 @@ import Dishes from './Dishes'
 
 const Session = ({ state, match }) => {
   return (
-    <div className="section">
-      <div className="container">
-      <div className="session">
-        <h1 className="title is-2">{state.title}</h1>
-        <h2 className="subtitle is-4">{state.location}</h2>
-        <Dishes dishes={state.dishes}/>
+    <div className="container">
+      <div className="section">
+        <div className="session">
+          <div className="columns session-header">
+            <div className="column is-5">
+              <h1 className="title is-4">{state.title}</h1>
+              <h2 className="subtitle is-5">{state.location}</h2>
+            </div>
+            <div className="column is-7">
+              <div className="session-users">
+              <div className="user">
+                <p>Michael</p>
+              </div>
+              <div className="user">
+                <p>Peter</p>
+              </div>
+              <div className="user">
+                <p>T-Dawg</p>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <div className="section">
+        <Dishes dishes={state.dishes}/>
       </div>
     </div>
   )

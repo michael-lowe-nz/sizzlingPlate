@@ -8464,3 +8464,22 @@ label.panel-block {
   margin: 0;
   overflow: visible;
   clip: auto; }
+
+.dish {
+  border-top: solid 1px #dedede; }
+
+.session-users {
+  display: flex;
+  width: 100%; }
+  .session-users .user {
+    border: solid 1px #dedede;
+    margin: 0 5px;
+    height: 85px;
+    width: 85px;
+    border-radius: 50%; }
+    .session-users .user:hover {
+      border-color: #9e9797; }
+    .session-users .user p {
+      color: #9e9797;
+      line-height: 85px;
+      text-align: center; }
