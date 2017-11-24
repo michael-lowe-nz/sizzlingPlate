@@ -1,56 +1,48 @@
-import React from 'react'
-import { render } from 'react-dom'
 import './index.css'
-import App from './components/App'
-import registerServiceWorker from './registerServiceWorker'
-import { createStore } from 'redux'
-import reducer from './reducer'
-// import firebase from 'firebase/app'
-import config from './config'
+// import registerServiceWorker from './registerServiceWorker'
 
 // require('firebase/auth')
 // require('firebase/firestore')
 // firebase.initializeApp(config)
-//
 // const db = firebase.firestore()
 
-const initialState = {
-  loading: true,
-  title: 'My Part yeooow',
-  location: 'Abel Smith St.',
-  dishes: [
-    {name: 'Butter Chicken with Honey'},
-    {name: 'Tikka Masala (hot)'},
-  ]
-}
+import React from 'react'
+import { render } from 'react-dom'
 
-const {dispatch, getState, subscribe} = createStore(reducer, initialState)
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
 
-// const mySession = db.collection('sessions').doc('xTHSfpF2IkRzJ5xvrIuc')
-// const myDishes = mySession.collection('dishes')
-//
-// const addDish = (dish) => myDishes.add(dish)
+import createHistory from 'history/createBrowserHistory'
+import { Route } from 'react-router'
 
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 
-// mySession.onSnapshot(response => {
-//   dispatch({
-//     type: 'RECEIVE_SESSION',
-//     payload: response.data()
-//   })
-// })
-//
-// myDishes.onSnapshot(response => {
-//   response.forEach(changedDish => {
-//       dispatch({
-//         type: 'RECEIVE_DISH',
-//         payload: changedDish.data()
-//       })
-//   })
-// })
+import reducer from './reducer'
 
-subscribe(() => {
-  render(<App state={getState()} dispatch={dispatch}/>, document.getElementById('root'))
-  registerServiceWorker()
-})
+import App from './components/App'
 
-dispatch({type: 'INIT'})
+const history = createHistory()
+
+// Build the middleware for intercepting and dispatching navigation actions
+const middleware = routerMiddleware(history)
+
+const store = createStore(
+  combineReducers({
+    ...reducer,
+    router: routerReducer
+  }),
+  applyMiddleware(middleware)
+)
+
+store.subscribe(() => render(<App history={history} store={store} />, document.getElementById('root')))
+
+store.dispatch({type: 'INIT'})
+
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <ConnectedRouter history={history}>
+//         <Route exact path="/" component={Home}/>
+//     </ConnectedRouter>
+//   </Provider>,
+//   document.getElementById('root')
+// )
