@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import dishes from './dishes'
+import session from './session'
 
 export default combineReducers({
   router: routerReducer,
-  dishes
+  session,
 })

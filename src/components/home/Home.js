@@ -8,7 +8,7 @@ const Home = () => (
         sizzlingPlate
       </h1>
       <h2 className="subtitle">
-        collaborate. enjoy 😋
+        collaborate. enjoy <span role="img" aria-label="licking lips emoji">😋</span>
       </h2>
     </div>
   </div>

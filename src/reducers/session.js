@@ -2,7 +2,6 @@ export const ADD_DISH = 'dishes/ADD_DISH'
 
 const initialState = {
   title: 'Extravagant Party Larty',
-  
   dishes: [
     {name: 'Pad-Thai'}
   ]
@@ -11,6 +10,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_DISH:
+    console.log('old state:', state);
       return {
         ...state,
         dishes: [

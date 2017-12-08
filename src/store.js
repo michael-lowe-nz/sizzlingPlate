@@ -7,9 +7,12 @@ import rootReducer from './reducers'
 export const history = createHistory()
 
 const initialState = {
-  dishes: [
-    {name: 'KFC'}
-  ]
+  session: {
+    title: 'Boolean Banter',
+    dishes: [
+      {name: 'kfc'}
+    ]
+  }
 }
 const enhancers = []
 const middleware = [
