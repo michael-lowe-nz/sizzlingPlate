@@ -1,48 +1,21 @@
-import './index.css'
-// import registerServiceWorker from './registerServiceWorker'
-
-// require('firebase/auth')
-// require('firebase/firestore')
-// firebase.initializeApp(config)
-// const db = firebase.firestore()
-
 import React from 'react'
 import { render } from 'react-dom'
-
-import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-
-import createHistory from 'history/createBrowserHistory'
-import { Route } from 'react-router'
-
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
-
-import reducer from './reducer'
-
+import { ConnectedRouter } from 'react-router-redux'
+import store, { history } from './store'
 import App from './components/App'
 
-const history = createHistory()
+import './index.css'
 
-// Build the middleware for intercepting and dispatching navigation actions
-const middleware = routerMiddleware(history)
+const target = document.querySelector('#root')
 
-const store = createStore(
-  combineReducers({
-    ...reducer,
-    router: routerReducer
-  }),
-  applyMiddleware(middleware)
+render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <div>
+        <App />
+      </div>
+    </ConnectedRouter>
+  </Provider>,
+  target
 )
-
-store.subscribe(() => render(<App history={history} store={store} />, document.getElementById('root')))
-
-store.dispatch({type: 'INIT'})
-
-// ReactDOM.render(
-//   <Provider store={store}>
-//     <ConnectedRouter history={history}>
-//         <Route exact path="/" component={Home}/>
-//     </ConnectedRouter>
-//   </Provider>,
-//   document.getElementById('root')
-// )

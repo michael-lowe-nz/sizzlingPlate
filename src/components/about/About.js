@@ -14,7 +14,7 @@ const About = () => {
         </div>
         <div className='column is-8'>
           <div className='content'>
-            <h2 clasName='title is-5'>Some of our happy customers...</h2>
+            <h2 className='title is-5'>Some of our happy customers...</h2>
             <ul>
               <li>Ghandi</li>
               <li>Billy Bob Thornton</li>
