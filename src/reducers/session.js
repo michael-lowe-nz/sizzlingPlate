@@ -1,16 +1,19 @@
 export const ADD_DISH = 'session/ADD_DISH'
 export const ADD_SESSION = 'session/ADD_SESSION'
+export const INCREMENT_COUNT = 'session/INCREMENT_COUNT'
 
 const initialState = {
   title: 'Extravagant Party Larty',
+  count: '1',
   dishes: [
     {name: 'Pad-Thai'}
   ]
 }
 
 export default (state = initialState, action) => {
-  console.log('ADD_DISH is:', ADD_DISH)
   switch (action.type) {
+    case INCREMENT_COUNT:
+      return {...state, count: state.count + 1}
     case ADD_SESSION:
       return action.payload
     case ADD_DISH:
@@ -37,6 +40,14 @@ export const addDish = (dish) => {
     dispatch({
       type: ADD_DISH,
       payload: dish
+    })
+  }
+}
+
+export const incrementCount = () => {
+  return dispatch => {
+    dispatch({
+      type: INCREMENT_COUNT,
     })
   }
 }

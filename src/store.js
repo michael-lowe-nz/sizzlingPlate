@@ -9,6 +9,7 @@ export const history = createHistory()
 const initialState = {
   session: {
     title: 'Boolean Banter',
+    count: 100,
     dishes: [
       {name: 'kfc'}
     ]
