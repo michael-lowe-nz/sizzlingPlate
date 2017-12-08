@@ -3,3 +3,12 @@
 
 @import './scss/components/dishes';
 @import './scss/components/session';
+
+.grow {
+  transition: all .2s ease-in-out;
+
+  &:hover, &:focus {
+    transform: scale(1.08);
+  }
+  
+}
