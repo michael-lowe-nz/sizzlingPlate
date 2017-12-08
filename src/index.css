@@ -8798,6 +8798,12 @@ label.panel-block {
 
 .dish {
   border-top: solid 1px #dedede; }
+  .dish .dish-voters {
+    border: solid 1px #dedede;
+    border-radius: 50%;
+    height: 45px;
+    margin: 0 20px;
+    width: 45px; }
 
 .session-users {
   display: flex;

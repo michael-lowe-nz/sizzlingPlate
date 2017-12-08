@@ -11,7 +11,8 @@ const initialState = {
     title: 'Boolean Banter',
     count: 100,
     dishes: [
-      {name: 'kfc'}
+      {name: 'KFC - family bucket', upvotes: 4, downvotes: 0},
+      {name: 'Dilinger\'s Southern Fried Chicken', upvotes: 4, downvotes: 0},
     ]
   }
 }

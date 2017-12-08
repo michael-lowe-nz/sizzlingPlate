@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bulma": "^0.6.0",
+    "bulma": "^0.6.2",
     "clone": "^2.1.1",
     "firebase": "^4.6.0",
     "history": "^4.7.2",
