@@ -15,27 +15,8 @@ const Dish = ({dish}) => (
             <a className="button is-medium"><span role="img" aria-label="licking lips emoji">👎</span></a>
           </p>
           <p className="control">
-            <a className="button is-medium"><span role="img" aria-label="licking lips emoji"></span>✏️</a>
+            <a className="button is-medium"><span role="img" aria-label="licking lips emoji">✏️</span></a>
           </p>
-        </div>
-      </div>
-      <div className="column is-6">
-        <div className="columns dish-voters">
-          <div className="column">
-            <div className="user is-active grow">
-              <p>M</p>
-            </div>
-          </div>
-          <div className="column">
-            <div className="user grow">
-              <p>P</p>
-            </div>
-          </div>
-          <div className="column">
-            <div className="user grow">
-              <p>T-D</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
