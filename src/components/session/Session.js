@@ -8,9 +8,15 @@ import Dishes from './Dishes'
 
 const Session = ({title, dishes, addDish, count, setDishInput, dishInput}) => {
 
+  function handleChange (e) {
+    e.preventDefault()
+    setDishInput(e.target.value)
+  }
+
   function handleSubmit (e) {
     e.preventDefault()
-    addDish({name: 'Minedu'})
+    addDish({name: dishInput})
+    setDishInput('')
   }
   return (
   <div className="container">
@@ -25,10 +31,10 @@ const Session = ({title, dishes, addDish, count, setDishInput, dishInput}) => {
               </div>
               <div className="column is-8">
                 <div className="field has-addons">
-                  <p>{dishInput}</p>
-                  <form onSubmit={handleSubmit}>
                     <div className="control has-icons-left">
-                      <input className="input" placeholder="Enter Dish"/>
+                      <form onSubmit={handleSubmit}>
+                        <input value={dishInput} onChange={handleChange} name="dishInput" className="input" placeholder="Enter Dish"/>
+                      </form>
                       <span className="icon is-small is-left">
                         <i className="fa fa-plus"></i>
                       </span>
@@ -36,7 +42,6 @@ const Session = ({title, dishes, addDish, count, setDishInput, dishInput}) => {
                         <a type="submit" onClick={handleSubmit} className="button is-info">Add</a>
                       </div>
                     </div>
-                  </form>
                 </div>
 
               </div>

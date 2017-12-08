@@ -7,7 +7,7 @@ const Dish = ({dish}) => (
         <strong>{dish.name}</strong>
       </div>
       <div className="column is-4">
-        <div className="field has-addons is-right">
+        <div className="field has-addons">
           <p className="control">
             <a className="button is-medium"><span role="img" aria-label="thumbs up">👍</span></a>
           </p>

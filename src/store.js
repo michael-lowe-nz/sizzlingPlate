@@ -9,7 +9,7 @@ export const history = createHistory()
 const initialState = {
   session: {
     title: 'Boolean Banter',
-    dishInput: 'Nyah',
+    dishInput: '',
     dishes: [
       {name: 'KFC - family bucket', upvotes: 4, downvotes: 0},
       {name: 'Dilinger\'s Southern Fried Chicken', upvotes: 4, downvotes: 0},

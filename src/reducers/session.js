@@ -51,6 +51,7 @@ export const setDishInput = (value) => {
   return dispatch => {
     dispatch({
       type: SET_DISH_INPUT,
+      payload: value
     })
   }
 }
