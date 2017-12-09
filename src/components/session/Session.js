@@ -27,22 +27,22 @@ const Session = ({title, dishes, addDish, count, setDishInput, dishInput}) => {
             <h1 className="title is-4">{title}</h1>
             <div className="columns">
               <div className="column">
-                <a className="button is-outlined grow">Share Link</a>
+                <a className="button is-outlined is-success grow">Share Link</a>
               </div>
               <div className="column is-8">
+                <form onSubmit={handleSubmit}>
                 <div className="field has-addons">
                     <div className="control has-icons-left">
-                      <form onSubmit={handleSubmit}>
                         <input value={dishInput} onChange={handleChange} name="dishInput" className="input" placeholder="Enter Dish"/>
-                      </form>
-                      <span className="icon is-small is-left">
-                        <i className="fa fa-plus"></i>
-                      </span>
-                      <div className="control">
-                        <a type="submit" onClick={handleSubmit} className="button is-info">Add</a>
+                        <span className="icon is-small is-left">
+                          <i className="fa fa-plus"></i>
+                        </span>
                       </div>
-                    </div>
+                      <div className="control">
+                        <a onClick={handleSubmit} className="button is-info">Add</a>
+                      </div>
                 </div>
+              </form>
 
               </div>
             </div>

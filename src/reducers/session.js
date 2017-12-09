@@ -22,7 +22,7 @@ export default (state = initialState, action) => {
     case ADD_DISH:
       return {
         ...state,
-        dishes: [...state.dishes, action.payload]
+        dishes: [action.payload, ...state.dishes]
       }
     default:
       return state
