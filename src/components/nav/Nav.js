@@ -1,14 +1,19 @@
 import React from 'react'
+import {bindActionCreators} from 'redux'
+import { connect } from 'react-redux'
+import { toggleMenu } from '../../reducers/nav'
 import { NavLink } from 'react-router-dom'
 
 
-const Nav = () => (
+const Nav = ({toggleMenu, showMenu}) => {
+  return (
   <div className='navbar is-light is-fixed-top'>
     <div className="container">
       <div className="navbar-brand">
         <NavLink to='/' tag="a" className="navbar-item">sizzlingPlate<i className="fa fa-delete"></i></NavLink>
+          <button onClick={toggleMenu} className="button is-light navbar-burger"><span></span><span></span><span></span></button>
       </div>
-      <div className="navbar-menu">
+      <div className={`navbar-menu ${showMenu ? "is-active" : ""}`}>
         <div className="navbar-end">
           <NavLink to='/about' activeClassName='is-active' tag='a' className='navbar-item'>About</NavLink>
           <NavLink to='/session' activeClassName='is-active' tag='a' className='navbar-item'>My Session</NavLink>
@@ -16,6 +21,16 @@ const Nav = () => (
       </div>
     </div>
   </div>
-)
+)}
 
-export default Nav
+// export default Nav
+
+const mapStateToProps = ({nav}) => ({
+  showMenu: nav.showMenu
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  toggleMenu
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)

@@ -7,6 +7,9 @@ import rootReducer from './reducers'
 export const history = createHistory()
 
 const initialState = {
+  nav: {
+    showMenu: false
+  },
   session: {
     title: 'Boolean Banter',
     dishInput: '',

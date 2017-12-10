@@ -1,8 +1,11 @@
+// $navbar-height: 2rem;
+
 @import './node_modules/bulma/bulma';
 @import './scss/fontawesome/font-awesome';
 
 @import './scss/components/dishes';
 @import './scss/components/session';
+@import './scss/components/nav';
 
 .grow {
   transition: all .2s ease-in-out;
@@ -10,5 +13,5 @@
   &:hover, &:focus {
     transform: scale(1.08);
   }
-  
+
 }

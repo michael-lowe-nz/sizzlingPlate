@@ -1,0 +1,9 @@
+@import '../colors';
+
+.navbar {
+  .is-active {
+    border-bottom: solid 3px $orange;
+    padding-bottom: 5px;
+  }
+
+}
