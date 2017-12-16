@@ -83,4 +83,33 @@ describe('session reducer', () => {
 
     expect(actualState).toEqual(expectedState)
   })
+
+  it('can increment a vote for a dish', () => {
+    const initialState = {
+      dishes: [
+        {
+          name: 'KFC',
+          votes: []
+        }
+      ]
+    }
+
+    const expectedState = {
+      dishes: [
+        {
+          name: 'KFC',
+          votes: [
+            {user: 'T-Dawg', value: -1}
+          ]
+        }
+      ]
+    }
+
+    const actualState = reducer(initialState, {
+      type: 'session/ADD_DISH_VOTE',
+      payload: {dishName: 'KFC', vote: {user: 'T-Dawg', value: -1}}
+    })
+
+    expect(actualState).toEqual(expectedState)
+  })
 })
