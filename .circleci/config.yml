@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:6.10-browsers
+    steps:
+      - checkout
+      - run: npm install
+  test:
+    docker:
+      - image: circleci/node:6.10-browsers
+    steps:
+      - checkout
+      - run: npm test
+  deploy:
+    docker:
+      - image: circleci/node:6.10-browsers
+      - run:
+          name: Install dependencies
+          working_directory: /
+          command: |
+            apt-get -y -qq update
+            apt-get -y -qq install python3.4-dev
+            curl -O https://bootstrap.pypa.io/get-pip.py
+            python3.4 get-pip.py --user
+            pip install awscli --upgrade --user
+      - run:
+          commmand: npm run install
+          commmand: npm run build
+      - run:
+          name: Push to S3
+          working_directory: ~/project
+          command: aws  s3 sync dist s3://sizzling-plate/ --delete
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test

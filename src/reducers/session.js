@@ -1,28 +1,42 @@
 export const ADD_DISH = 'session/ADD_DISH'
 export const ADD_SESSION = 'session/ADD_SESSION'
 export const SET_DISH_INPUT = 'session/SET_DISH_INPUT'
+export const ADD_DISH_VOTE = 'session/ADD_DISH_VOTE'
 
 const initialState = {
   title: 'Extravagant Party Larty',
   dishInput: '',
   dishes: [
-    {name: 'Pad-Thai'}
+    {name: 'Pad-Thai', votes: []}
   ]
 }
 
-export default (state = initialState, action) => {
-  switch (action.type) {
+export default (state = initialState, { type, payload}) => {
+  switch (type) {
     case SET_DISH_INPUT:
       return {
         ...state,
-        dishInput: action.payload
+        dishInput: payload
       }
     case ADD_SESSION:
-      return action.payload
+      return payload
     case ADD_DISH:
       return {
         ...state,
-        dishes: [action.payload, ...state.dishes]
+        dishes: [
+          payload,
+          ...state.dishes
+        ]
+      }
+    case ADD_DISH_VOTE:
+      return {
+        ...state,
+        dishes: state.dishes.map(dish => {
+          if(dish.name === payload.dishName) {
+            dish.votes = [...dish.votes, payload.vote]
+          }
+          return dish
+        })
       }
     default:
       return state
@@ -52,6 +66,15 @@ export const setDishInput = (value) => {
     dispatch({
       type: SET_DISH_INPUT,
       payload: value
+    })
+  }
+}
+
+export const setDishVote = (vote, dishName) => {
+  return dispatch => {
+    dispatch({
+      type: ADD_DISH_VOTE,
+      payload: {vote, dishName}
     })
   }
 }

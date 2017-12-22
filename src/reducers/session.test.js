@@ -2,17 +2,6 @@ import reducer from './session';
 import expect from 'expect';
 
 describe('session reducer', () => {
-  it('should return the initial state', () => {
-    const expectedState = {
-      dishInput: '',
-      dishes: [
-        {name: 'Pad-Thai'}
-      ],
-      title: 'Extravagant Party Larty'
-    }
-    expect(reducer(undefined, {})).toEqual(expectedState)
-  })
-
   it('should handle ADD_DISH', () => {
     const initialState = {
       dishes: [
