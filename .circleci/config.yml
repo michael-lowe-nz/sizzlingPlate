@@ -5,14 +5,13 @@ jobs:
       - image: circleci/node:6.10-browsers
     steps:
       - checkout
-      - run: echo "Chek it out"
+      - run: echo $PWD
   deploy-job:
     docker:
       - image: circleci/node:6.10-browsers
     steps:
       - run:
           name: Install dependencies
-          working_directory: /
           command: sudo apt-get -y -qq install awscli
       - checkout
       - run:
