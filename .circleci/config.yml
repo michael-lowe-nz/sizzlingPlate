@@ -5,7 +5,10 @@ jobs:
       - image: circleci/node:6.10-browsers
     steps:
       - checkout
-      - run: echo $PWD
+      - run: npm install
+      - run:
+          name: Test
+          command: npm test
   deploy-job:
     docker:
       - image: circleci/node:6.10-browsers
