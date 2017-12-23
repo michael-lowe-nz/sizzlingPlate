@@ -5,6 +5,7 @@ jobs:
       - image: circleci/node:6.10-browsers
     steps:
       - checkout
+      - run: npm install
       - run:
           name: Test
           command: npm test
@@ -16,9 +17,9 @@ jobs:
           name: Install dependencies
           command: sudo apt-get -y -qq install awscli
       - checkout
-      - run:
-          name: Install
-          command: npm install
+      # - run:
+      #     name: Install
+      #     command: npm install
       - run:
           name: Build
           command: npm run build
