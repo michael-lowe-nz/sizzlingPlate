@@ -16,11 +16,14 @@ jobs:
           command: sudo apt-get -y -qq install awscli
       - checkout
       - run:
-          name: Install and build
+          name: Install
+          command: npm install
+      - run:
+          name: Build
           command: npm build
       - run:
           name: Deploy if tests pass and branch is Master
-          command: aws s3 sync build s3://sizzling-plate/ --delete
+          command: aws s3 sync ~/build s3://sizzling-plate/ --delete
 workflows:
   version: 2
   build-deploy:
