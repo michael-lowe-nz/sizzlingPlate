@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:6.10-browsers
     steps:
       - checkout
-      - run: npm install && npm build
+      - run: echo "Chek it out"
   deploy-job:
     docker:
       - image: circleci/node:6.10-browsers
@@ -23,7 +23,7 @@ jobs:
           command: npm build
       - run:
           name: Deploy if tests pass and branch is Master
-          command: aws s3 sync ~/build s3://sizzling-plate/ --delete
+          command: aws s3 sync ./build s3://sizzling-plate/ --delete
 workflows:
   version: 2
   build-deploy:
