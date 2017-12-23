@@ -21,9 +21,6 @@ jobs:
           name: Build
           command: npm run build
       - run:
-          name: Where am I
-          command: echo ($ls)
-      - run:
           name: Deploy if tests pass and branch is Master
           command: aws s3 sync ./build s3://sizzling-plate/ --delete
 workflows:
