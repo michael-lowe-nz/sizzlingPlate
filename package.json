@@ -31,5 +31,8 @@
     "deploy": "npm build && aws s3 sync ./build s3://sizzling-plate --delete",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-burger-menu": "^2.1.11"
   }
 }
