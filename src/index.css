@@ -8817,9 +8817,10 @@ label.panel-block {
     border-color: #ff9100;
     color: #ff9100; }
 
-.navbar .is-active {
-  border-bottom: solid 3px #ff9100;
-  padding-bottom: 5px; }
+@media screen and (min-width: 1023px) {
+  .navbar .is-active {
+    border-bottom: solid 3px #ff9100;
+    padding-bottom: 5px; } }
 
 .grow {
   transition: all .2s ease-in-out; }

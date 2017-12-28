@@ -2,8 +2,7 @@ import React from 'react'
 import {bindActionCreators} from 'redux'
 import { connect } from 'react-redux'
 import { toggleMenu } from '../../reducers/nav'
-import { NavLink } from 'react-router-dom'
-
+import { NavLink, withRouter } from 'react-router-dom'
 
 const Nav = ({toggleMenu, showMenu}) => {
   return (
@@ -11,7 +10,7 @@ const Nav = ({toggleMenu, showMenu}) => {
     <div className="container">
       <div className="navbar-brand">
         <NavLink to='/' tag="a" className="navbar-item">sizzlingPlate<i className="fa fa-delete"></i></NavLink>
-          <button onClick={toggleMenu} className="button is-light navbar-burger"><span></span><span></span><span></span></button>
+        <button onClick={toggleMenu} className="button is-light navbar-burger"><span></span><span></span><span></span></button>
       </div>
       <div className={`navbar-menu ${showMenu ? "is-active" : ""}`}>
         <div className="navbar-end">
@@ -33,4 +32,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   toggleMenu
 }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Nav)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav))

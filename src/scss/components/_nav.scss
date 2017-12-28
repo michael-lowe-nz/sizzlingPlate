@@ -1,9 +1,12 @@
 @import '../colors';
 
-.navbar {
-  .is-active {
-    border-bottom: solid 3px $orange;
-    padding-bottom: 5px;
-  }
+@media screen and (min-width: 1023px) {
+  .navbar {
+    .is-active {
+      border-bottom: solid 3px $orange;
+      padding-bottom: 5px;
+    }
 
+  }
+  
 }
