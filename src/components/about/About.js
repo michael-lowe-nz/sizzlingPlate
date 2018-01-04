@@ -12,16 +12,6 @@ const About = () => {
             <p>You find yourself in a tapas/communal ordering situation, its hard to order. The waiter comes around, who is gonna step up and do the actual ordering? Has the person remembered everyone's requests? Chances are that they haven't.</p>
           </div>
         </div>
-        <div className='column is-8'>
-          <div className='content'>
-            <h2 className='title is-5'>Some of our happy customers...</h2>
-            <ul>
-              <li>Ghandi</li>
-              <li>Billy Bob Thornton</li>
-              <li>Julius Caesar</li>
-            </ul>
-          </div>
-          </div>
       </div>
       <div>
       </div>
