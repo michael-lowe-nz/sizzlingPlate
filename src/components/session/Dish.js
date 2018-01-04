@@ -1,4 +1,10 @@
 import React from 'react'
+import {bindActionCreators} from 'redux'
+import {
+  addDishVote
+} from '../../reducers/session'
+import {connect} from 'react-redux'
+
 
 const Dish = ({dish}) => (
   <div className="dish column is-12">
@@ -23,4 +29,8 @@ const Dish = ({dish}) => (
   </div>
 )
 
-export default Dish
+const mapDispatchToProps = dispatch => bindActionCreators({
+  addDishVote,
+}, dispatch)
+
+export default connect(() => ({}), mapDispatchToProps)(Dish)

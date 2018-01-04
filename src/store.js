@@ -11,12 +11,9 @@ const initialState = {
     showMenu: false
   },
   session: {
-    title: 'Boolean Banter',
+    title: 'Where are you?',
     dishInput: '',
-    dishes: [
-      {name: 'KFC - family bucket', upvotes: 4, downvotes: 0},
-      {name: 'Dilinger\'s Southern Fried Chicken', upvotes: 4, downvotes: 0},
-    ]
+    dishes: []
   }
 }
 const enhancers = []

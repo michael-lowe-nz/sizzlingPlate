@@ -8805,13 +8805,13 @@ label.panel-block {
   .session-users .user {
     border: solid 1px #dedede;
     margin: 0 5px;
-    height: 85px;
-    width: 85px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%; }
     .session-users .user:hover {
       border-color: black; }
     .session-users .user p {
-      line-height: 85px;
+      line-height: 40px;
       text-align: center; }
   .session-users .user.is-active {
     border-color: #ff9100;

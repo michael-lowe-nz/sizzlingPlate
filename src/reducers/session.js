@@ -4,11 +4,9 @@ export const SET_DISH_INPUT = 'session/SET_DISH_INPUT'
 export const ADD_DISH_VOTE = 'session/ADD_DISH_VOTE'
 
 const initialState = {
-  title: 'Extravagant Party Larty',
+  title: 'Where are you?',
   dishInput: '',
-  dishes: [
-    {name: 'Pad-Thai', votes: []}
-  ]
+  dishes: []
 }
 
 export default (state = initialState, { type, payload}) => {
@@ -70,7 +68,7 @@ export const setDishInput = (value) => {
   }
 }
 
-export const setDishVote = (vote, dishName) => {
+export const addDishVote = (vote, dishName) => {
   return dispatch => {
     dispatch({
       type: ADD_DISH_VOTE,

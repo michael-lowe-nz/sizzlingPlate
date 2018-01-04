@@ -2,7 +2,12 @@ import React from 'react'
 import {push} from 'react-router-redux'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {addDish, addSession, setDishInput} from '../../reducers/session'
+import {
+  addDish,
+  addSession,
+  setDishInput,
+  addDishVote
+} from '../../reducers/session'
 
 import Dishes from './Dishes'
 
@@ -23,6 +28,19 @@ const Session = ({title, dishes, addDish, count, setDishInput, dishInput}) => {
     <div className="section">
       <div className="session">
         <div className="columns is-multiline session-header">
+          <div className="column is-12">
+            <div className="session-users">
+              <div className="user is-active grow">
+                <p>M</p>
+              </div>
+              <div className="user grow">
+                <p>P</p>
+              </div>
+              <div className="user grow">
+                <p>T</p>
+              </div>
+            </div>
+          </div>
           <div className="column is-5">
             <h1 className="title is-4">{title}</h1>
             <div className="columns">
@@ -43,20 +61,6 @@ const Session = ({title, dishes, addDish, count, setDishInput, dishInput}) => {
                       </div>
                 </div>
               </form>
-
-              </div>
-            </div>
-          </div>
-          <div className="column is-7">
-            <div className="session-users">
-              <div className="user is-active grow">
-                <p>Michael</p>
-              </div>
-              <div className="user grow">
-                <p>Peter</p>
-              </div>
-              <div className="user grow">
-                <p>T-Dawg</p>
               </div>
             </div>
           </div>
@@ -73,6 +77,7 @@ const mapStateToProps = ({session}) => ({dishes: session.dishes, title: session.
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   addDish,
+  addDishVote,
   addSession,
   setDishInput,
   changePage: () => push('/')
