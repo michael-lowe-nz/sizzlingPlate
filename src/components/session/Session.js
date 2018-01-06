@@ -20,7 +20,7 @@ const Session = ({title, dishes, addDish, count, setDishInput, dishInput}) => {
 
   function handleSubmit (e) {
     e.preventDefault()
-    addDish({name: dishInput})
+    addDish({name: dishInput, votes: []})
     setDishInput('')
   }
   return (

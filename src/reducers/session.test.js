@@ -73,7 +73,7 @@ describe('session reducer', () => {
     expect(actualState).toEqual(expectedState)
   })
 
-  it('can increment a vote for a dish', () => {
+  it('can add a vote for a dish', () => {
     const initialState = {
       dishes: [
         {
@@ -101,4 +101,5 @@ describe('session reducer', () => {
 
     expect(actualState).toEqual(expectedState)
   })
+
 })

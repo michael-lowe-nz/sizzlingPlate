@@ -68,11 +68,14 @@ export const setDishInput = (value) => {
   }
 }
 
-export const addDishVote = (vote, dishName) => {
+export const addDishVote = (dishName, vote) => {
   return dispatch => {
     dispatch({
       type: ADD_DISH_VOTE,
-      payload: {vote, dishName}
+      payload: {
+        vote,
+        dishName
+      }
     })
   }
 }
