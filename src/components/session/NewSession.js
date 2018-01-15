@@ -1,17 +1,15 @@
 import React from 'react'
 
-const Vote = ({user, value}) => {
-
-  return (
+const NewSession = () => (
     <div className="container">
       <div className="section">
         <div className="columns">
           <div className="column is-4">
-            <h1>I am a {value} vote</h1>
+            <button className="button">New Session</button>
           </div>
         </div>
       </div>
     </div>
-  )}
+)
 
-export default Vote
+export default NewSession
