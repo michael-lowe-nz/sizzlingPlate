@@ -2,7 +2,6 @@ import React from 'react'
 
 const Dish = ({ name, votes, addDishVote }) => {
   function handleUpVote () {
-    console.log('handling upvote:', votes)
     addDishVote( name, {
       user: 'M',
       value: 1
@@ -10,7 +9,6 @@ const Dish = ({ name, votes, addDishVote }) => {
   }
 
   function handleDownVote () {
-    console.log('handling downvote', votes)
     addDishVote( name, {
       user: 'J',
       value: -1
