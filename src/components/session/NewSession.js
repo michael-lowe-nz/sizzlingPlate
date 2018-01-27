@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux'
 const NewSession = ({changePage}) => {
   function handleNewSession (e) {
     e.preventDefault()
-    changePage(1);
+    changePage('xTHSfpF2IkRzJ5xvrIuc');
   }
   return (
     <div className="container">

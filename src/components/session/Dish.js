@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Dish = ({ name, votes, addDishVote }) => {
-  console.log('initial,')
   function handleUpVote () {
     console.log('handling upvote:', votes)
     addDishVote( name, {
