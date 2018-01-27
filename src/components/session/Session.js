@@ -80,7 +80,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   addDishVote,
   addSession,
   setDishInput,
-  changePage: () => push('/')
+  changePage: () => push('/1')
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Session)
