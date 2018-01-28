@@ -8,7 +8,7 @@ import Dish from './Dish'
 
 const Dishes = ({ dishes, addDishVote }) => (
   <div className="session-dishes columns is-multiline">
-    {dishes.map(dish => <Dish key={dish.name} name={dish.name} votes={dish.votes} addDishVote={addDishVote}/>)}
+    {dishes.map(dish => <Dish key={dish.id} name={dish.name} votes={dish.votes} addDishVote={addDishVote}/>)}
   </div>
 )
 

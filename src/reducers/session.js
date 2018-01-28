@@ -17,14 +17,27 @@ export default (state = initialState, { type, payload}) => {
         dishInput: payload
       }
     case ADD_SESSION:
-      return payload
-    case ADD_DISH:
       return {
-        ...state,
-        dishes: [
-          payload,
-          ...state.dishes
-        ]
+        ...payload,
+        dishes: []
+      }
+    case ADD_DISH:
+      if (!state.dishes.find(dish => dish.id === payload.id)) {
+        return {
+          ...state,
+          dishes: [
+            payload,
+            ...state.dishes
+          ]
+        }
+      } else {
+        return {
+          ...state,
+          dishes: state.dishes.map(dish => {
+            if(dish.id === payload.id) return payload
+            return dish
+          })
+        }
       }
     case ADD_DISH_VOTE:
       return {
