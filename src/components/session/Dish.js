@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Dish = ({ name, votes, addDishVote }) => {
+const Dish = ({ name, votes, addDishVote, id, deleteDish}) => {
   function handleUpVote () {
     addDishVote( name, {
       user: 'M',
@@ -13,6 +13,11 @@ const Dish = ({ name, votes, addDishVote }) => {
       user: 'J',
       value: -1
     })
+  }
+
+  function handleDeleteDish () {
+    console.log("will delete", id)
+    deleteDish(id)
   }
 
   return (<div className="dish column is-12">
@@ -35,8 +40,8 @@ const Dish = ({ name, votes, addDishVote }) => {
             </a>
           </p>
           <p className="control">
-            <a className="button is-medium">
-              <span role="img" aria-label="licking lips emoji">✏️</span>
+            <a onClick={handleDeleteDish} className="button is-medium">
+              <span role="img" aria-label="trash emoji">🗑</span>
             </a>
           </p>
         </div>

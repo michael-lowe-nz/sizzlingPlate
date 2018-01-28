@@ -26,6 +26,29 @@ describe('session reducer', () => {
     expect(actualState).toEqual(expectedState)
   })
 
+  it('should handle REMOVE_DISH', () => {
+    const initialState = {
+      dishes: [
+        {name: 'Pad-Thai', id: '2'},
+        {name: 'KFC', id: '1'},
+      ],
+      title: 'Extravagant Party Larty'
+    }
+
+    const expectedState = {
+      dishes: [
+        {name: 'KFC', id: '1'},
+      ],
+      title: 'Extravagant Party Larty'
+    }
+
+    const actualState = reducer(initialState, {
+      type: 'session/REMOVE_DISH',
+      payload: '2'
+    })
+    expect(actualState).toEqual(expectedState)
+  })
+
   it('should handle ADD_SESSION', () => {
     const initialState = {
       dishes: [],

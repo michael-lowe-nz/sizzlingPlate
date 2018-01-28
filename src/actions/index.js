@@ -1,5 +1,10 @@
 import firebase from '../firebase'
-import { addSession, addDish, setDishInput } from '../reducers/session'
+import {
+  addSession,
+  addDish,
+  setDishInput,
+  removeDish
+} from '../reducers/session'
 
 export const getSession = (id) => {
   return function(dispatch) {
@@ -35,5 +40,17 @@ export const sendDish = (sessionId, dish) => {
       .collection('dishes')
       .add(dish)
       .then(() => dispatch(setDishInput('')))
+  }
+}
+
+export const deleteDish = (sessionId, dishId) => {
+  return function(dispatch) {
+    firebase.firestore()
+      .collection('sessions')
+      .doc(sessionId)
+      .delete()
+      .then(dish => {
+        dispatch(removeDish(dishId))
+      })
   }
 }

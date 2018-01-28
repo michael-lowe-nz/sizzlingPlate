@@ -1,4 +1,5 @@
 export const ADD_DISH = 'session/ADD_DISH'
+export const REMOVE_DISH = 'session/REMOVE_DISH'
 export const ADD_SESSION = 'session/ADD_SESSION'
 export const SET_DISH_INPUT = 'session/SET_DISH_INPUT'
 export const ADD_DISH_VOTE = 'session/ADD_DISH_VOTE'
@@ -39,6 +40,11 @@ export default (state = initialState, { type, payload}) => {
           })
         }
       }
+    case REMOVE_DISH:
+      return {
+        ...state,
+        dishes: state.dishes.filter(dish => dish.id !== payload)
+      }
     case ADD_DISH_VOTE:
       return {
         ...state,
@@ -68,6 +74,15 @@ export const addDish = (dish) => {
     dispatch({
       type: ADD_DISH,
       payload: dish
+    })
+  }
+}
+
+export const removeDish = (dishId) => {
+  return dispatch => {
+    dispatch({
+      type: REMOVE_DISH,
+      payload: dishId
     })
   }
 }
