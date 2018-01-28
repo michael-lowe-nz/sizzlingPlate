@@ -1,5 +1,5 @@
 import firebase from '../firebase'
-import { addSession, addDish } from '../reducers/session'
+import { addSession, addDish, setDishInput } from '../reducers/session'
 
 export const getSession = (id) => {
   return function(dispatch) {
@@ -27,4 +27,13 @@ export const getSession = (id) => {
   }
 }
 
-// export const addDish = (addDish)
+export const sendDish = (sessionId, dish) => {
+  return function(dispatch) {
+    firebase.firestore()
+      .collection('sessions')
+      .doc(sessionId)
+      .collection('dishes')
+      .add(dish)
+      .then(() => dispatch(setDishInput('')))
+  }
+}

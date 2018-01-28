@@ -7,7 +7,7 @@ import {
   setDishInput,
   addDishVote
 } from '../../reducers/session'
-import { getSession } from '../../actions/index'
+import { getSession, sendDish } from '../../actions/index'
 
 import Dishes from './Dishes'
 
@@ -24,8 +24,12 @@ class Session extends React.Component {
   }
   handleSubmit (e) {
     e.preventDefault()
-    this.props.addDish({name: this.props.dishInput, votes: []})
-    this.props.setDishInput('')
+    // this.props.addDish({name: this.props.dishInput, votes: []})
+    this.props.sendDish(this.props.match.params.id, {
+      name: this.props.dishInput,
+      votes: []
+    })
+    // this.props.setDishInput('')
   }
   handleLoadSession (e) {
     e.preventDefault()
@@ -91,7 +95,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   addDishVote,
   addSession,
   setDishInput,
-  getSession
+  getSession,
+  sendDish
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Session)
