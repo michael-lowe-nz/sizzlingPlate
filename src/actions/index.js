@@ -9,14 +9,14 @@ import {
 export const getSession = (id) => {
   return function(dispatch) {
     firebase.firestore()
-      .collection('sessions')
+      .collection('session')
       .doc(id)
       .onSnapshot(session => {
         dispatch(addSession(session.data()))
       });
 
     firebase.firestore()
-      .collection('sessions')
+      .collection('session')
       .doc(id)
       .collection('dishes')
       .onSnapshot(dishes => {
@@ -35,7 +35,7 @@ export const getSession = (id) => {
 export const sendDish = (sessionId, dish) => {
   return function(dispatch) {
     firebase.firestore()
-      .collection('sessions')
+      .collection('session')
       .doc(sessionId)
       .collection('dishes')
       .add(dish)
@@ -46,7 +46,7 @@ export const sendDish = (sessionId, dish) => {
 export const deleteDish = (sessionId, dishId) => {
   return function(dispatch) {
     firebase.firestore()
-      .collection('sessions')
+      .collection('session')
       .doc(sessionId)
       .delete()
       .then(dish => {
