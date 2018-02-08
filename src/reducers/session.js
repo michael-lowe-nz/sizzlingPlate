@@ -20,7 +20,7 @@ export default (state = initialState, { type, payload}) => {
     case ADD_SESSION:
       return {
         ...payload,
-        dishes: []
+        dishes: state.dishes || []
       }
     case ADD_DISH:
       if (!state.dishes.find(dish => dish.id === payload.id)) {
