@@ -79,7 +79,6 @@ export const addDish = (dish) => {
 }
 
 export const removeDish = (dishId) => {
-  console.log('dishId to remove:', dishId)
   return dispatch => {
     dispatch({
       type: REMOVE_DISH,

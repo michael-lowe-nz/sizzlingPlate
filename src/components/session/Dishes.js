@@ -1,15 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addDishVote} from '../../reducers/session'
-import {deleteDish} from '../../actions/index'
+import {deleteDish, sendDishVote} from '../../actions/index'
 import {bindActionCreators} from 'redux'
 
 import Dish from './Dish'
 
-const Dishes = ({ dishes, addDishVote, deleteDish, sessionId }) => (
+const Dishes = ({ dishes, sendDishVote, deleteDish, sessionId }) => (
   <div className="session-dishes columns is-multiline">
     {dishes.map(dish => <Dish
-      addDishVote={addDishVote}
+      sendDishVote={sendDishVote}
       deleteDish={deleteDish}
       key={dish.id}
       id={dish.id}
@@ -21,7 +20,7 @@ const Dishes = ({ dishes, addDishVote, deleteDish, sessionId }) => (
 )
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  addDishVote,
+  sendDishVote,
   deleteDish
 }, dispatch)
 

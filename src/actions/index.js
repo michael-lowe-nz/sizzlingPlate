@@ -3,7 +3,7 @@ import {
   addSession,
   addDish,
   setDishInput,
-  removeDish
+  removeDish,
 } from '../reducers/session'
 
 export const getSession = (id) => {
@@ -57,5 +57,23 @@ export const deleteDish = (sessionId, dishId) => {
       .collection('dishes')
       .doc(dishId)
       .delete()
+  }
+}
+
+export const sendDishVote = (sessionId, dishId, user, value) => {
+  return function(dispatch) {
+    const dish = firebase.firestore()
+      .collection('session')
+      .doc(sessionId)
+      .collection('dishes')
+      .doc(dishId)
+
+    dish.get()
+      .then(response => {
+        const votes = response.data().votes
+        return dish.update({
+          votes: [...votes, {user, value}]
+        })
+      })
   }
 }

@@ -1,21 +1,15 @@
 import React from 'react'
 
-const Dish = ({addDishVote, deleteDish, votes, name, id, sessionId}) => {
+const Dish = ({sendDishVote, deleteDish, votes, name, id, sessionId}) => {
 
   function handleUpVote(e) {
     e.preventDefault()
-    addDishVote(name, {
-      user: 'M',
-      value: 1
-    })
+    sendDishVote(sessionId, id, 'Mike', 1)
   }
 
   function handleDownVote(e) {
     e.preventDefault()
-    addDishVote(name, {
-      user: 'J',
-      value: -1
-    })
+    sendDishVote(sessionId, id, 'Mike', -1)
   }
 
   function handleDeleteDish(e) {
