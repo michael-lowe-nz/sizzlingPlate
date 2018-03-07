@@ -12,8 +12,8 @@ describe('session reducer', () => {
 
     const expectedState = {
       dishes: [
-        {name: 'KFC', id: '1'},
         {name: 'Pad-Thai', id: '2'}
+        {name: 'KFC', id: '1'},
       ],
       title: 'Extravagant Party Larty'
     }

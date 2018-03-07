@@ -31,8 +31,8 @@ export default (state = initialState, { type, payload}) => {
         return {
           ...state,
           dishes: [
-            payload,
-            ...state.dishes
+            ...state.dishes,
+            payload
           ]
         }
       } else {
@@ -82,6 +82,7 @@ export const getSession = (id) => {
       .collection('session')
       .doc(id)
       .collection('dishes')
+      .orderBy('created')
       .onSnapshot(dishes => {
         dishes.docChanges
           .filter(dish => dish.type === 'removed')
@@ -121,20 +122,25 @@ export const toggleSessionLoading = () => {
 
 export const addDish = (sessionId, dish) => {
   return dispatch => {
+    const id = dish.name.replace(/ /g,'')
+    const newDish = {
+      ...dish,
+      created: new Date(),
+    }
     dispatch({
       type: SET_DISH_INPUT,
       payload: ''
     })
     dispatch({
       type: ADD_DISH,
-      payload: {...dish, id: dish.name}
+      payload: {...newDish, id}
     })
     firebase.firestore()
       .collection('session')
       .doc(sessionId)
       .collection('dishes')
-      .doc(dish.name)
-      .set(dish)
+      .doc(id)
+      .set(newDish)
   }
 }
 

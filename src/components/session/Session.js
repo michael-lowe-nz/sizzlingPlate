@@ -28,10 +28,12 @@ class Session extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault()
-    this.props.addDish(this.props.match.params.id, {
-      name: this.props.dishInput,
-      votes: []
-    })
+    if(this.props.dishInput) {
+      this.props.addDish(this.props.match.params.id, {
+        name: this.props.dishInput,
+        votes: []
+      })
+    }
   }
   handleLoadSession(e) {
     e.preventDefault()
