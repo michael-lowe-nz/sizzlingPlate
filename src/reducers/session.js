@@ -1,3 +1,5 @@
+import firebase from '../firebase'
+
 export const ADD_DISH = 'session/ADD_DISH'
 export const REMOVE_DISH = 'session/REMOVE_DISH'
 export const ADD_SESSION = 'session/ADD_SESSION'
@@ -67,29 +69,39 @@ export default (state = initialState, { type, payload}) => {
   }
 }
 
-export const addSession = (session) => {
+export const getSession = (id) => {
   return dispatch => {
-    dispatch({
-      type: ADD_SESSION,
-      payload: session
-    })
-  }
-}
+    firebase.firestore()
+      .collection('session')
+      .doc(id)
+      .onSnapshot(session => {
+        dispatch({type: ADD_SESSION, payload: session.data()})
+      });
 
-export const addDish = (dish) => {
-  return dispatch => {
-    dispatch({
-      type: ADD_DISH,
-      payload: dish
-    })
-  }
-}
-
-export const removeDish = (dishId) => {
-  return dispatch => {
-    dispatch({
-      type: REMOVE_DISH,
-      payload: dishId
+    firebase.firestore()
+      .collection('session')
+      .doc(id)
+      .collection('dishes')
+      .onSnapshot(dishes => {
+        dishes.docChanges
+          .filter(dish => dish.type === 'removed')
+          .forEach(dish => {
+            dispatch({
+              type: REMOVE_DISH,
+              payload: dish.doc.id
+            })
+          })
+        dishes.forEach(dish => {
+          const dishData = dish.data()
+          const storeDish = {
+            ...dishData,
+            id: dish.id
+          }
+          dispatch({
+            type: ADD_DISH,
+            payload: storeDish
+          })
+        })
     })
   }
 }
@@ -103,18 +115,58 @@ export const setDishInput = (value) => {
   }
 }
 
-export const addDishVote = (dishName, vote) => {
+export const toggleSessionLoading = () => {
+  return dispatch => dispatch({type: TOGGLE_SESSION_LOADING})
+}
+
+export const addDish = (sessionId, dish) => {
   return dispatch => {
     dispatch({
-      type: ADD_DISH_VOTE,
-      payload: {
-        vote,
-        dishName
-      }
+      type: SET_DISH_INPUT,
+      payload: ''
     })
+    dispatch({
+      type: ADD_DISH,
+      payload: {...dish, id: dish.name}
+    })
+    firebase.firestore()
+      .collection('session')
+      .doc(sessionId)
+      .collection('dishes')
+      .doc(dish.name)
+      .set(dish)
   }
 }
 
-export const toggleSessionLoading = () => {
-  return dispatch => dispatch({type: TOGGLE_SESSION_LOADING})
+export const deleteDish = (sessionId, dishId) => {
+  return function(dispatch) {
+    dispatch({
+      type: REMOVE_DISH,
+      payload: dishId
+    })
+    firebase.firestore()
+      .collection('session')
+      .doc(sessionId)
+      .collection('dishes')
+      .doc(dishId)
+      .delete()
+  }
+}
+
+export const sendDishVote = (sessionId, dishId, user, value) => {
+  return function(dispatch) {
+    const dish = firebase.firestore()
+      .collection('session')
+      .doc(sessionId)
+      .collection('dishes')
+      .doc(dishId)
+
+    dish.get()
+      .then(response => {
+        const votes = response.data().votes
+        return dish.update({
+          votes: [...votes, {user, value}]
+        })
+      })
+  }
 }

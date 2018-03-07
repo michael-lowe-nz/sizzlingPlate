@@ -2,13 +2,11 @@ import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {
+  getSession,
   addDish,
-  addSession,
   setDishInput,
-  addDishVote,
   toggleSessionLoading
 } from '../../reducers/session'
-import { getSession, sendDish } from '../../actions/index'
 import MDSpinner from "react-md-spinner";
 
 import Dishes from './Dishes'
@@ -30,7 +28,7 @@ class Session extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault()
-    this.props.sendDish(this.props.match.params.id, {
+    this.props.addDish(this.props.match.params.id, {
       name: this.props.dishInput,
       votes: []
     })
@@ -111,11 +109,8 @@ const mapStateToProps = ({session}) => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   addDish,
-  addDishVote,
-  addSession,
   setDishInput,
   getSession,
-  sendDish,
   toggleSessionLoading
 }, dispatch)
 
