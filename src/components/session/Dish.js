@@ -25,7 +25,7 @@ const Dish = (props) => {
   return (<div className="dish column is-12">
     <div className="columns">
       <div className="column is-2">
-        <strong>{props.name}</strong>
+        <strong>{props.name} ({props.id})</strong>
       </div>
       <div className="column is-4">
         <div className="field has-addons">

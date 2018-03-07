@@ -20,6 +20,11 @@ export const getSession = (id) => {
       .doc(id)
       .collection('dishes')
       .onSnapshot(dishes => {
+        dishes.docChanges
+          .filter(dish => dish.type === 'removed')
+          .forEach(dish => {
+            dispatch(removeDish(dish.doc.id))
+          })
         dishes.forEach(dish => {
           const dishData = dish.data()
           const storeDish = {
