@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Dish = (props) => {
+const Dish = ({addDishVote, deleteDish, votes, name, id, sessionId}) => {
 
   function handleUpVote(e) {
     e.preventDefault()
-    props.addDishVote(props.name, {
+    addDishVote(name, {
       user: 'M',
       value: 1
     })
@@ -12,7 +12,7 @@ const Dish = (props) => {
 
   function handleDownVote(e) {
     e.preventDefault()
-    props.addDishVote(props.name, {
+    addDishVote(name, {
       user: 'J',
       value: -1
     })
@@ -20,25 +20,25 @@ const Dish = (props) => {
 
   function handleDeleteDish(e) {
     e.preventDefault()
-    props.deleteDish(props.sessionId, props.id)
+    deleteDish(sessionId, id)
   }
   return (<div className="dish column is-12">
     <div className="columns">
       <div className="column is-2">
-        <strong>{props.name}</strong>
+        <strong>{name}</strong>
       </div>
       <div className="column is-4">
         <div className="field has-addons">
           <p className="control">
             <a onClick={handleUpVote} className="button is-medium">
               <span role="img" aria-label="thumbs up">👍</span>
-              <span>{props.votes.filter(vote => vote.value > 0).length || null}</span>
+              <span>{votes.filter(vote => vote.value > 0).length || null}</span>
             </a>
           </p>
           <p className="control">
             <a onClick={handleDownVote} className="button is-medium">
               <span role="img" aria-label="thumbs down">👎</span>
-              <span>{props.votes.filter(vote => vote.value < 0).length || null}</span>
+              <span>{votes.filter(vote => vote.value < 0).length || null}</span>
             </a>
           </p>
           <p className="control">
