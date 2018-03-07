@@ -3,9 +3,11 @@ export const REMOVE_DISH = 'session/REMOVE_DISH'
 export const ADD_SESSION = 'session/ADD_SESSION'
 export const SET_DISH_INPUT = 'session/SET_DISH_INPUT'
 export const ADD_DISH_VOTE = 'session/ADD_DISH_VOTE'
+export const TOGGLE_SESSION_LOADING = 'session/TOGGLE_SESSION_LOADING'
 
 const initialState = {
-  title: 'Where are you?',
+  title: '',
+  sessionLoading: false,
   dishInput: '',
   dishes: []
 }
@@ -54,6 +56,11 @@ export default (state = initialState, { type, payload}) => {
           }
           return dish
         })
+      }
+    case TOGGLE_SESSION_LOADING:
+      return {
+        ...state,
+        isLoading: !state.isLoading
       }
     default:
       return state
@@ -106,4 +113,8 @@ export const addDishVote = (dishName, vote) => {
       }
     })
   }
+}
+
+export const toggleSessionLoading = () => {
+  return dispatch => dispatch({type: TOGGLE_SESSION_LOADING})
 }

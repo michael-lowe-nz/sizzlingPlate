@@ -1,8 +1,15 @@
 import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {addDish, addSession, setDishInput, addDishVote} from '../../reducers/session'
-import {getSession, sendDish} from '../../actions/index'
+import {
+  addDish,
+  addSession,
+  setDishInput,
+  addDishVote,
+  toggleSessionLoading
+} from '../../reducers/session'
+import { getSession, sendDish } from '../../actions/index'
+import MDSpinner from "react-md-spinner";
 
 import Dishes from './Dishes'
 
@@ -12,6 +19,11 @@ class Session extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleLoadSession = this.handleLoadSession.bind(this)
+  }
+  componentDidMount() {
+    this.props.toggleSessionLoading()
+    this.props.getSession(this.props.match.params.id)
+    // this.props.toggleSessionLoading()
   }
   handleChange(e) {
     e.preventDefault()
@@ -29,6 +41,20 @@ class Session extends React.Component {
     this.props.getSession(this.props.match.params.id)
   }
   render() {
+    if (this.props.isLoading) {
+      const style = {
+        display: 'flex',
+        width: '100%',
+        height: '80vh',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }
+      return (
+        <div style={style}>
+          <MDSpinner/>
+        </div>
+      )
+    }
     return (<div className="container">
       <div className="section">
         <div className="session">
@@ -49,9 +75,6 @@ class Session extends React.Component {
             <div className="column is-5">
               <h1 className="title is-4">{this.props.title}</h1>
               <div className="columns">
-                <div className="column">
-                  <a onClick={this.handleLoadSession} className="button is-outlined is-success grow">Load Session</a>
-                </div>
                 <div className="column is-8">
                   <form onSubmit={this.handleSubmit}>
                     <div className="field has-addons">
@@ -79,7 +102,13 @@ class Session extends React.Component {
   }
 }
 
-const mapStateToProps = ({session}) => ({dishes: session.dishes, title: session.title, count: session.count, dishInput: session.dishInput})
+const mapStateToProps = ({session}) => ({
+  dishes: session.dishes,
+  title: session.title,
+  count: session.count,
+  dishInput: session.dishInput,
+  isLoading: session.isLoading
+})
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   addDish,
@@ -87,7 +116,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   addSession,
   setDishInput,
   getSession,
-  sendDish
+  sendDish,
+  toggleSessionLoading
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Session)

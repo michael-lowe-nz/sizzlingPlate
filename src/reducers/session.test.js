@@ -118,4 +118,21 @@ describe('session reducer', () => {
     expect(actualState).toEqual(expectedState)
   })
 
+  it('can toggle session loading state', () => {
+    const initialState = {
+      isLoading: false,
+    }
+
+    const expectedState = {
+      isLoading: true
+    }
+
+    const actualState = reducer(initialState, {
+      type: 'session/TOGGLE_SESSION_LOADING'
+    })
+
+    expect(actualState).toEqual(expectedState)
+  })
+
+
 })

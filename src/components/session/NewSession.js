@@ -6,14 +6,14 @@ import {bindActionCreators} from 'redux'
 const NewSession = ({changePage}) => {
   function handleNewSession (e) {
     e.preventDefault();
-    changePage('xTHSfpF2IkRzJ5xvrIuc');
+    changePage('NobaNpwmuYRCeevJct3l');
   }
   return (
     <div className="container">
       <div className="section">
         <div className="columns">
           <div className="column is-4">
-            <button onClick={handleNewSession} className="button">Join Session</button>
+            <button onClick={handleNewSession} className="button">New Session</button>
           </div>
         </div>
       </div>
