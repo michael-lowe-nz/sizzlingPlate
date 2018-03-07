@@ -23,7 +23,6 @@ class Session extends React.Component {
   componentDidMount() {
     this.props.toggleSessionLoading()
     this.props.getSession(this.props.match.params.id)
-    // this.props.toggleSessionLoading()
   }
   handleChange(e) {
     e.preventDefault()
