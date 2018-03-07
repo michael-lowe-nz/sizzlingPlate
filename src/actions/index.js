@@ -45,16 +45,12 @@ export const sendDish = (sessionId, dish) => {
 
 export const deleteDish = (sessionId, dishId) => {
   return function(dispatch) {
-    console.log('About to Delete (action)')
+    dispatch(removeDish(dishId))
     firebase.firestore()
       .collection('session')
       .doc(sessionId)
       .collection('dishes')
       .doc(dishId)
       .delete()
-      .then(dish => {
-        console.log('I have deleted', dish)
-        dispatch(removeDish(dishId))
-      })
   }
 }

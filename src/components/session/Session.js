@@ -70,7 +70,7 @@ class Session extends React.Component {
               </div>
             </div>
             <div className="column is-12">
-              <Dishes dishes={this.props.dishes}/>
+              <Dishes dishes={this.props.dishes} sessionId={this.props.match.params.id}/>
             </div>
           </div>
         </div>
