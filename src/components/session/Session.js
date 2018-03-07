@@ -75,7 +75,7 @@ class Session extends React.Component {
               <h1 className="title is-4">{this.props.title}</h1>
               <div className="columns">
                 <div className="column is-8">
-                  <form onSubmit={this.handleSubmit}>
+                  <form className="addDish" onSubmit={this.handleSubmit}>
                     <div className="field has-addons">
                       <div className="control has-icons-left">
                         <input value={this.props.dishInput || ''} onChange={this.handleChange} name="dishInput" className="input" placeholder="Enter Dish"/>
