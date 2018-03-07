@@ -34,12 +34,12 @@ export const getSession = (id) => {
 
 export const sendDish = (sessionId, dish) => {
   return function(dispatch) {
+    dispatch(setDishInput(''))
     firebase.firestore()
       .collection('session')
       .doc(sessionId)
       .collection('dishes')
       .add(dish)
-      .then(() => dispatch(setDishInput('')))
   }
 }
 
