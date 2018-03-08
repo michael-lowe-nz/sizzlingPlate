@@ -1,6 +1,31 @@
 @import '../colors';
 
 .dish {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-top: solid 1px $light-grey;
+  min-height: 400px;
+}
 
+.button.is-round {
+  width: 8em;
+  height: 8em;
+  border-radius: 50%;
+}
+
+.vote-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  p {
+    margin: 5px;
+  }
+}
+
+.dish-title {
+  display: flex;
 }

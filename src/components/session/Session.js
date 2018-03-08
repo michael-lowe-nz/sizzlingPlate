@@ -72,7 +72,18 @@ class Session extends React.Component {
               </div>
             </div>
             <div className="column is-5">
-              <h1 className="title is-4">{this.props.title}</h1>
+              <h1 className="title is-4">
+                <div className="columns is-gapless is-mobile">
+                  <div className="column">
+                    {this.props.title}
+                  </div>
+                  <div className="column is-narrow">
+                    <span className="icon edit-field">
+                      <i className="fa fa-pencil"></i>
+                    </span>
+                  </div>
+                </div>
+              </h1>
               <div className="columns">
                 <div className="column is-8">
                   <form className="addDish" onSubmit={this.handleSubmit}>

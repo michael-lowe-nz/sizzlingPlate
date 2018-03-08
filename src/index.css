@@ -8797,7 +8797,28 @@ label.panel-block {
   clip: auto; }
 
 .dish {
-  border-top: solid 1px #dedede; }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top: solid 1px #dedede;
+  min-height: 400px; }
+
+.button.is-round {
+  width: 8em;
+  height: 8em;
+  border-radius: 50%; }
+
+.vote-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; }
+  .vote-buttons p {
+    margin: 5px; }
+
+.dish-title {
+  display: flex; }
 
 .session-users {
   display: flex;
