@@ -17,14 +17,12 @@ const Dish = ({sendDishVote, deleteDish, votes, name, id, sessionId}) => {
     deleteDish(sessionId, id)
   }
   return (<div className="dish column is-12">
-    <div className="columns">
-      <div className="column is-2 dish-title">
+      <div className="dish-title">
         <strong>{name}</strong>
         <a onClick={handleDeleteDish} className="button is-small">
           <span role="img" aria-label="trash emoji">🗑</span>
         </a>
       </div>
-      <div className="column is-4">
         <div className="vote-buttons">
           <p className="control">
             <a onClick={handleUpVote} className="button is-round">
@@ -39,8 +37,6 @@ const Dish = ({sendDishVote, deleteDish, votes, name, id, sessionId}) => {
             </a>
           </p>
         </div>
-      </div>
-    </div>
   </div>)
 }
 

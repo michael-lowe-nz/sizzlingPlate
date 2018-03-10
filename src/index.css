@@ -8798,9 +8798,8 @@ label.panel-block {
 
 .dish {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: space-around;
   border-top: solid 1px #dedede;
   min-height: 400px; }
 
@@ -8810,15 +8809,14 @@ label.panel-block {
   border-radius: 50%; }
 
 .vote-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; }
-  .vote-buttons p {
-    margin: 5px; }
+  display: flex; }
 
 .dish-title {
   display: flex; }
+
+@media screen and (max-width: 768px) {
+  .dish {
+    flex-direction: column; } }
 
 .session-users {
   display: flex;
