@@ -13,6 +13,15 @@ const NewSession = ({changePage}) => {
       <div className="section">
         <div className="columns">
           <div className="column is-4">
+            <input class="input"/>
+          </div>
+          <div className="column is-4">
+          </div>
+        </div>
+      </div>
+      <div className="section">
+        <div className="columns">
+          <div className="column is-4">
             <button onClick={handleNewSession} className="button">New Session</button>
           </div>
         </div>

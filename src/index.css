@@ -8799,7 +8799,7 @@ label.panel-block {
 .dish {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   border-top: solid 1px #dedede;
   min-height: 200px; }
 
