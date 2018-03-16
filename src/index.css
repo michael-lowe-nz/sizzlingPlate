@@ -8801,7 +8801,10 @@ label.panel-block {
   align-items: center;
   justify-content: space-around;
   border-top: solid 1px #dedede;
-  min-height: 400px; }
+  min-height: 200px; }
+
+.delete-dish-button {
+  margin-left: 10px; }
 
 .button.is-round {
   width: 8em;
@@ -8810,11 +8813,13 @@ label.panel-block {
 
 .vote-buttons {
   display: flex; }
+  .vote-buttons .control {
+    margin: 0 5px; }
 
 .dish-title {
   display: flex; }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 700px) {
   .dish {
     flex-direction: column; } }
 

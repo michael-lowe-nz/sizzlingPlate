@@ -19,7 +19,7 @@ const Dish = ({sendDishVote, deleteDish, votes, name, id, sessionId}) => {
   return (<div className="dish column is-12">
       <div className="dish-title">
         <strong>{name}</strong>
-        <a onClick={handleDeleteDish} className="button is-small">
+        <a onClick={handleDeleteDish} className="delete-dish-button button is-small">
           <span role="img" aria-label="trash emoji">🗑</span>
         </a>
       </div>

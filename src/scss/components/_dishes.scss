@@ -5,7 +5,11 @@
   align-items: center;
   justify-content: space-around;
   border-top: solid 1px $light-grey;
-  min-height: 400px;
+  min-height: 200px;
+}
+
+.delete-dish-button {
+  margin-left: 10px;
 }
 
 .button.is-round {
@@ -16,13 +20,17 @@
 
 .vote-buttons {
   display: flex;
+
+  .control {
+    margin: 0 5px;
+  }
 }
 
 .dish-title {
   display: flex;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 700px) {
   .dish {
     flex-direction: column;
   }
