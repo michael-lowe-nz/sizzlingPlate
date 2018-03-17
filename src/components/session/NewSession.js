@@ -5,34 +5,41 @@ import {bindActionCreators} from 'redux'
 import {
   createSession
 } from '../../reducers/session'
+import MDSpinner from "react-md-spinner";
 
-const NewSession = ({changePage, createSession}) => {
+const NewSession = ({changePage, createSession, isCreatingSession}) => {
+  console.log('isCreatingSession', isCreatingSession);
   function handleNewSession (e) {
     e.preventDefault();
-    createSession()
-    // changePage('NobaNpwmuYRCeevJct3l');
+    createSession().then(id => changePage(id))
   }
-  return (
-    <div className="container">
-      <div className="section">
-        <div className="columns is-mobile">
-          <div className="column is-4">
-            <label>Choose a restauraunt</label>
-            <input className="input"/>
+  if(isCreatingSession) {
+    console.log('creating session here');
+    return <MDSpinner />
+  } else {
+    console.log('')
+    return (
+      <div className="container">
+        <div className="section">
+          <div className="columns is-mobile">
+            <div className="column is-4">
+              <label>Choose a restauraunt</label>
+              <input className="input"/>
+            </div>
+            <div className="column is-4">
+              <label>Give your event a name</label>
+              <input className="input"></input>
+            </div>
           </div>
-          <div className="column is-4">
-            <label>Give your event a name</label>
-            <input className="input"></input>
-          </div>
-        </div>
-        <div className="columns">
-          <div className="column is-4">
-            <button onClick={handleNewSession} className="button is-primary">Create Session</button>
+          <div className="columns">
+            <div className="column is-4">
+              <button onClick={handleNewSession} className="button is-primary">Create Session</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 const mapDispatchToProps = dispatch =>
@@ -41,4 +48,8 @@ bindActionCreators({
   createSession
 }, dispatch)
 
-export default connect(() => ({}), mapDispatchToProps)(NewSession)
+const mapStateToProps = ({session}) => ({
+  isCreatingSession: session.isCreatingSession
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewSession)

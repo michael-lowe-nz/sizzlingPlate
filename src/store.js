@@ -13,7 +13,8 @@ const initialState = {
   session: {
     title: 'Where are you?',
     dishInput: '',
-    dishes: []
+    dishes: [],
+    isCreatingSession: false,
   }
 }
 const enhancers = []

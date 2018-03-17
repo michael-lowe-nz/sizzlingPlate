@@ -1,5 +1,4 @@
 import firebase from '../firebase'
-import {push} from 'react-router-redux'
 
 export const ADD_DISH = 'session/ADD_DISH'
 export const REMOVE_DISH = 'session/REMOVE_DISH'
@@ -13,7 +12,9 @@ export const TOGGLE_CREATING_SESSION = 'session/TOGGLE_CREATING_SESSION'
 const initialState = {
   title: '',
   sessionLoading: false,
+  isCreatingSession: false,
   dishInput: '',
+  newSessionInput: '',
   dishes: []
 }
 
@@ -187,18 +188,15 @@ export const sendDishVote = (sessionId, dishId, user, value) => {
 
 export const createSession = (title) => {
   return function(dispatch) {
-    const newSession = firebase.firestore()
-      .collection('session')
-      .doc()
-
-    console.log('Session ID created:', newSession.id)
-    newSession.set({title: 'Look at me!'})
-      .then(() => {
-        console.log('Response from set');
-        push(newSession.id)
-      })
-      .catch(error => console.log('error creating session'));
-
+    return new Promise((resolve, reject) => {
+      dispatch({type: TOGGLE_CREATING_SESSION})
+      const newSession = firebase.firestore()
+        .collection('session')
+        .doc()
+      newSession.set({title: 'Look at me!'})
+        .then(() => resolve(newSession.id))
+        .catch(() => reject('Issue creating session'))
+    })
   }
 }
 
