@@ -150,5 +150,22 @@ describe('session reducer', () => {
     expect(actualState).toEqual(expectedState)
   })
 
+  it('can change new session input', () => {
+    const initialState = {
+      newSessionInput: '',
+    }
+
+    const expectedState = {
+      newSessionInput: 'Ooglie Googlie'
+    }
+
+    const actualState = reducer(initialState, {
+      type: 'session/SET_NEW_SESSION_INPUT',
+      payload: 'Ooglie Googlie'
+    })
+
+    expect(actualState).toEqual(expectedState)
+  })
+
 
 })

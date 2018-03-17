@@ -4,6 +4,7 @@ export const ADD_DISH = 'session/ADD_DISH'
 export const REMOVE_DISH = 'session/REMOVE_DISH'
 export const ADD_SESSION = 'session/ADD_SESSION'
 export const SET_DISH_INPUT = 'session/SET_DISH_INPUT'
+export const SET_NEW_SESSION_INPUT = 'session/SET_NEW_SESSION_INPUT'
 export const ADD_DISH_VOTE = 'session/ADD_DISH_VOTE'
 export const TOGGLE_SESSION_LOADING = 'session/TOGGLE_SESSION_LOADING'
 export const CREATE_SESSION = 'session/CREATE_SESSION'
@@ -24,6 +25,11 @@ export default (state = initialState, { type, payload}) => {
       return {
         ...state,
         dishInput: payload
+      }
+    case SET_NEW_SESSION_INPUT:
+      return {
+        ...state,
+        newSessionInput: payload
       }
     case ADD_SESSION:
       return {
@@ -203,5 +209,14 @@ export const createSession = (title) => {
 export const toggleCreatingSession = () => {
   return function(dispatch) {
     dispatch({type: 'TOGGLE_CREATING_SESSION'})
+  }
+}
+
+export const setNewSessionInput = (value) => {
+  return dispatch => {
+    dispatch({
+      type: SET_NEW_SESSION_INPUT,
+      payload: value
+    })
   }
 }
