@@ -7,7 +7,9 @@ import {
   setDishInput,
   toggleSessionLoading
 } from '../../reducers/session'
-import MDSpinner from "react-md-spinner";
+import MDSpinner from "react-md-spinner"
+import {CopyToClipboard} from 'react-copy-to-clipboard'
+
 
 import Dishes from './Dishes'
 
@@ -78,9 +80,9 @@ class Session extends React.Component {
                     {this.props.title}
                   </div>
                   <div className="column is-narrow">
-                    <span className="icon edit-field">
-                      <i className="fa fa-pencil"></i>
-                    </span>
+                    <CopyToClipboard text={window.location.href}>
+                      <a className="button is-info is-outlined">Copy Link</a>
+                    </CopyToClipboard>
                   </div>
                 </div>
               </h1>
