@@ -12,7 +12,7 @@ describe('session reducer', () => {
 
     const expectedState = {
       dishes: [
-        {name: 'Pad-Thai', id: '2'}
+        {name: 'Pad-Thai', id: '2'},
         {name: 'KFC', id: '1'},
       ],
       title: 'Extravagant Party Larty'
@@ -129,6 +129,22 @@ describe('session reducer', () => {
 
     const actualState = reducer(initialState, {
       type: 'session/TOGGLE_SESSION_LOADING'
+    })
+
+    expect(actualState).toEqual(expectedState)
+  })
+
+  it('can change creating session to loading', () => {
+    const initialState = {
+      isCreatingSession: false,
+    }
+
+    const expectedState = {
+      isCreatingSession: true
+    }
+
+    const actualState = reducer(initialState, {
+      type: 'session/TOGGLE_CREATING_SESSION'
     })
 
     expect(actualState).toEqual(expectedState)
