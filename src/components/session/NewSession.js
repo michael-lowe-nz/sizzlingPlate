@@ -35,11 +35,7 @@ const NewSession = ({changePage, createSession, isCreatingSession, setNewSession
     return (
       <div className="container">
         <div className="section">
-          <div className="columns is-mobile">
-            <div className="column is-4">
-              <label>Choose a restauraunt</label>
-              <input className="input"/>
-            </div>
+          <div className="columns">
             <div className="column is-4">
               <label>Give your event a name</label>
               <input value={newSessionInput || ''} onChange={handleTitleChange} className="input"></input>
