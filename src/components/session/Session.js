@@ -73,13 +73,13 @@ class Session extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="column is-5">
+            <div className="column is-12">
               <h1 className="title is-4">
-                <div className="columns is-gapless is-mobile">
-                  <div className="column">
+                <div className="columns">
+                  <div className="column is-10">
                     {this.props.title}
                   </div>
-                  <div className="column is-narrow">
+                  <div className="column is-2">
                     <CopyToClipboard text={window.location.href}>
                       <a className="button is-info is-outlined">Copy Link</a>
                     </CopyToClipboard>

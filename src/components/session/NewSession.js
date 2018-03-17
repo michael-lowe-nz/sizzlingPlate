@@ -35,15 +35,20 @@ const NewSession = ({changePage, createSession, isCreatingSession, setNewSession
     return (
       <div className="container">
         <div className="section">
-          <div className="columns">
+          <h1 className="title">Create a new voting session</h1>
+          <form onSubmit={handleNewSession} className="columns">
             <div className="column is-4">
-              <label>Give your event a name</label>
-              <input value={newSessionInput || ''} onChange={handleTitleChange} className="input"></input>
+              <div className="field">
+                <label className="label">Session Title</label>
+                  <div className="control">
+                    <input value={newSessionInput || ''} onChange={handleTitleChange} className="input"></input>
+                </div>
+              </div>
             </div>
-          </div>
+          </form>
           <div className="columns">
             <div className="column is-4">
-              <button onClick={handleNewSession} className="button is-primary">Create Session</button>
+              <button type='submit' onClick={handleNewSession} className="button is-primary">Create Session</button>
             </div>
           </div>
         </div>
