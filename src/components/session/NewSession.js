@@ -8,16 +8,13 @@ import {
 import MDSpinner from "react-md-spinner";
 
 const NewSession = ({changePage, createSession, isCreatingSession}) => {
-  console.log('isCreatingSession', isCreatingSession);
   function handleNewSession (e) {
     e.preventDefault();
     createSession().then(id => changePage(id))
   }
   if(isCreatingSession) {
-    console.log('creating session here');
     return <MDSpinner />
   } else {
-    console.log('')
     return (
       <div className="container">
         <div className="section">
