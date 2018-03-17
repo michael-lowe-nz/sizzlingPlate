@@ -199,7 +199,7 @@ export const createSession = (title) => {
       const newSession = firebase.firestore()
         .collection('session')
         .doc()
-      newSession.set({title: 'Look at me!'})
+      newSession.set({title})
         .then(() => resolve(newSession.id))
         .catch(() => reject('Issue creating session'))
     })

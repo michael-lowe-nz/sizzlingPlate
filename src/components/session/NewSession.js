@@ -3,17 +3,34 @@ import {push} from 'react-router-redux'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {
-  createSession
+  createSession,
+  setNewSessionInput
 } from '../../reducers/session'
 import MDSpinner from "react-md-spinner";
 
-const NewSession = ({changePage, createSession, isCreatingSession}) => {
+const NewSession = ({changePage, createSession, isCreatingSession, setNewSessionInput, newSessionInput}) => {
   function handleNewSession (e) {
     e.preventDefault();
-    createSession().then(id => changePage(id))
+    createSession(newSessionInput).then(id => changePage(id))
+  }
+
+  function handleTitleChange (e) {
+    e.preventDefault()
+    setNewSessionInput(e.target.value)
   }
   if(isCreatingSession) {
-    return <MDSpinner />
+    const style = {
+      display: 'flex',
+      width: '100%',
+      height: '80vh',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }
+    return (
+      <div style={style}>
+        <MDSpinner/>
+      </div>
+    )
   } else {
     return (
       <div className="container">
@@ -25,7 +42,7 @@ const NewSession = ({changePage, createSession, isCreatingSession}) => {
             </div>
             <div className="column is-4">
               <label>Give your event a name</label>
-              <input className="input"></input>
+              <input value={newSessionInput || ''} onChange={handleTitleChange} className="input"></input>
             </div>
           </div>
           <div className="columns">
@@ -42,11 +59,13 @@ const NewSession = ({changePage, createSession, isCreatingSession}) => {
 const mapDispatchToProps = dispatch =>
 bindActionCreators({
   changePage: (id) => push(`session/${id}`),
-  createSession
+  createSession,
+  setNewSessionInput
 }, dispatch)
 
 const mapStateToProps = ({session}) => ({
-  isCreatingSession: session.isCreatingSession
+  isCreatingSession: session.isCreatingSession,
+  newSessionInput: session.newSessionInput
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewSession)
