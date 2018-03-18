@@ -32,6 +32,9 @@ const NewSession = ({changePage, createSession, isCreatingSession, setNewSession
       </div>
     )
   } else {
+
+    const localSessions = JSON.parse(window.localStorage.getItem('sessions')) || []
+
     return (
       <div className="container">
         <div className="section">
@@ -50,6 +53,20 @@ const NewSession = ({changePage, createSession, isCreatingSession, setNewSession
             <div className="column is-4">
               <button type='submit' onClick={handleNewSession} className="button is-primary">Create Session</button>
             </div>
+          </div>
+          <div className="columns is-multiline">
+            <div className="column is-12">
+              <h2>Recent sessions</h2>
+            </div>
+            {localSessions.map(session => {
+             return (
+              <div key={session} className="column is-12">
+                <a onClick={() => changePage(session)} className="button">
+                  Session: {session}
+                </a>
+              </div>
+             )
+            })}
           </div>
         </div>
       </div>

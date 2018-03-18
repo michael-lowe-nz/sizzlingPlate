@@ -16,7 +16,8 @@ const initialState = {
   isCreatingSession: false,
   dishInput: '',
   newSessionInput: '',
-  dishes: []
+  dishes: [],
+  storedSessions: []
 }
 
 export default (state = initialState, { type, payload}) => {
