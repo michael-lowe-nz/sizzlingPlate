@@ -24,8 +24,11 @@ jobs:
           name: Build
           command: npm run build
       - run:
-          name: Deploy if tests pass
+          name: Deploy to SizzlingPlate
           command: aws s3 sync ./build s3://sizzling-plate/ --delete
+      - run:
+          name: Deploy to ShowOfHands
+          command: aws s3 sync ./build s3://showofhands.ml/ --delete
 workflows:
   version: 2
   build-deploy:
