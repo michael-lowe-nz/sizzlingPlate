@@ -20,8 +20,16 @@ class Session extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   componentDidMount() {
+    const sessionId = this.props.match.params.id
+
     this.props.toggleSessionLoading()
-    this.props.getSession(this.props.match.params.id)
+    this.props.getSession(sessionId)
+    
+    const localSessions = JSON.parse(window.localStorage.getItem('sessions')) || []
+    if (!localSessions.includes(sessionId)) {
+      window.localStorage.setItem('sessions', JSON.stringify([...localSessions, sessionId]))
+    }
+
   }
   handleChange(e) {
     e.preventDefault()
