@@ -18,7 +18,6 @@ class Session extends React.Component {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleLoadSession = this.handleLoadSession.bind(this)
   }
   componentDidMount() {
     this.props.toggleSessionLoading()
@@ -36,10 +35,6 @@ class Session extends React.Component {
         votes: []
       })
     }
-  }
-  handleLoadSession(e) {
-    e.preventDefault()
-    this.props.getSession(this.props.match.params.id)
   }
   render() {
     if (this.props.isLoading) {
