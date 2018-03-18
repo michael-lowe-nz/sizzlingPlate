@@ -17,18 +17,18 @@ jobs:
           name: Install dependencies
           command: sudo apt-get -y -qq install awscli
       - checkout
-      # - run:
-      #     name: Install
-      #     command: npm install
-      # - run:
-      #     name: Build
-      #     command: npm run build
+      - run:
+          name: Install
+          command: npm install
+      - run:
+          name: Build
+          command: npm run build
       # - run:
       #     name: Deploy to SizzlingPlate
       #     command: aws s3 sync ./build s3://sizzling-plate/ --delete
       - run:
           name: Deploy to ShowOfHands
-          command: aws s3 sync ./src/ s3://showofhands.ml/ --delete --region=ap-southeast-2
+          command: aws s3 sync ./build s3://showofhands.ml/ --delete --region=ap-southeast-2
 workflows:
   version: 2
   build-deploy:
