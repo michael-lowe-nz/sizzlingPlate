@@ -1,3 +1,4 @@
-https://circleci.com/gh/:owner/:repo.png?circle-token=:circle-token
+
+![CircleCI](https://circleci.com/gh/michael-lowe-nz/sizzlingPlate.svg?style=shield&circle-token=:circle-token)
 
 # Sizzling Plate
