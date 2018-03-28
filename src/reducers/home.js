@@ -35,14 +35,16 @@ export const getSessions = ids => {
     ids.forEach(id => {
       const recentSession = firebase.firestore()
           .collection('session')
-          .doc(id).exists()
+          .doc(id)
         
-      if(recentSessions) {
-        recentSession.onSnapshot(session => {
+      recentSession.get().then(doc => {
+        if(doc.exists) {
+          recentSession.onSnapshot(session => {
             console.log('session snapshot')
             dispatch({type: ADD_SESSION, payload: session.data()})
         })
-      }
+        }
+      })
       })
     }
 }
