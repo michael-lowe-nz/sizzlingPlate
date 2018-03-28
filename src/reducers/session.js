@@ -4,11 +4,8 @@ export const ADD_DISH = 'session/ADD_DISH'
 export const REMOVE_DISH = 'session/REMOVE_DISH'
 export const ADD_SESSION = 'session/ADD_SESSION'
 export const SET_DISH_INPUT = 'session/SET_DISH_INPUT'
-export const SET_NEW_SESSION_INPUT = 'session/SET_NEW_SESSION_INPUT'
 export const ADD_DISH_VOTE = 'session/ADD_DISH_VOTE'
 export const TOGGLE_SESSION_LOADING = 'session/TOGGLE_SESSION_LOADING'
-export const CREATE_SESSION = 'session/CREATE_SESSION'
-export const TOGGLE_CREATING_SESSION = 'session/TOGGLE_CREATING_SESSION'
 
 const initialState = {
   title: '',
@@ -26,11 +23,6 @@ export default (state = initialState, { type, payload}) => {
       return {
         ...state,
         dishInput: payload
-      }
-    case SET_NEW_SESSION_INPUT:
-      return {
-        ...state,
-        newSessionInput: payload
       }
     case ADD_SESSION:
       return {
@@ -74,11 +66,6 @@ export default (state = initialState, { type, payload}) => {
       return {
         ...state,
         isLoading: !state.isLoading
-      }
-    case TOGGLE_CREATING_SESSION:
-      return {
-        ...state,
-        isCreatingSession: !state.isCreatingSession
       }
     default:
       return state
@@ -193,31 +180,3 @@ export const sendDishVote = (sessionId, dishId, user, value) => {
   }
 }
 
-export const createSession = (title) => {
-  return function(dispatch) {
-    return new Promise((resolve, reject) => {
-      dispatch({type: TOGGLE_CREATING_SESSION})
-      const newSession = firebase.firestore()
-        .collection('session')
-        .doc()
-      newSession.set({title})
-        .then(() => resolve(newSession.id))
-        .catch(() => reject('Issue creating session'))
-    })
-  }
-}
-
-export const toggleCreatingSession = () => {
-  return function(dispatch) {
-    dispatch({type: 'TOGGLE_CREATING_SESSION'})
-  }
-}
-
-export const setNewSessionInput = (value) => {
-  return dispatch => {
-    dispatch({
-      type: SET_NEW_SESSION_INPUT,
-      payload: value
-    })
-  }
-}

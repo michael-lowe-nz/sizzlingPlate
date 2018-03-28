@@ -5,14 +5,17 @@ import {bindActionCreators} from 'redux'
 import {
   createSession,
   setNewSessionInput
-} from '../../reducers/session'
+} from '../../reducers/home'
 import MDSpinner from "react-md-spinner"
 import RecentSessions from './RecentSessions'
 
 const Home = ({changePage, createSession, isCreatingSession, setNewSessionInput, newSessionInput}) => {
   function handleNewSession (e) {
     e.preventDefault();
-    if (newSessionInput) createSession(newSessionInput).then(id => changePage(id))
+    if (newSessionInput) createSession(newSessionInput)
+      .then(id => changePage(id))
+      .then(() => setNewSessionInput(''))
+      .catch(console.log)
   }
 
   function handleTitleChange (e) {
@@ -69,9 +72,9 @@ bindActionCreators({
   setNewSessionInput
 }, dispatch)
 
-const mapStateToProps = ({session}) => ({
-  isCreatingSession: session.isCreatingSession,
-  newSessionInput: session.newSessionInput
+const mapStateToProps = ({home}) => ({
+  isCreatingSession: home.isCreatingSession,
+  newSessionInput: home.newSessionInput
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
