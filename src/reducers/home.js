@@ -2,7 +2,7 @@ import firebase from '../firebase'
 
 export const ADD_SESSION = 'home/ADD_SESSION'
 export const TOGGLE_CREATING_SESSION = 'home/TOGGLE_CREATING_SESSION'
-export const SET_NEW_SESSION_INPUT = 'session/SET_NEW_SESSION_INPUT'
+export const SET_NEW_SESSION_INPUT = 'home/SET_NEW_SESSION_INPUT'
 
 const initialState = {
   recentSessions: [],
