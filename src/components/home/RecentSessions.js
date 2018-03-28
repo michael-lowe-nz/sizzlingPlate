@@ -1,6 +1,7 @@
 import React from 'react'
 import Session from './Session'
 import {bindActionCreators} from 'redux'
+import {push} from 'react-router-redux'
 import {connect} from 'react-redux'
 import {
   getSessions
@@ -8,12 +9,16 @@ import {
 
 class RecentSessions extends React.Component {
     componentDidMount() {
-        this.props.getSessions(this.props.sessionIds)
+        const idsNotInState = this.props.sessionIds.filter(id => {
+            return !this.props.recentSessions.find(session => id === session.id)
+        })
+        this.props.getSessions(idsNotInState)
     }
     render() {
         return (
-            <div>
-                {this.props.recentSessions.map(session => <Session key={session.id} {...session}/>)}
+            <div className="columns is-multiline">
+                {this.props.recentSessions
+                    .map(session => <Session key={session.id} {...session} goToSession={this.props.goToSession}/>)}
             </div>
         )
     }
@@ -24,7 +29,8 @@ const mapStateToProps = ({home}) => ({
 })
   
 const mapDispatchToProps = dispatch => bindActionCreators({
-getSessions
+    getSessions,
+    goToSession: (id) => push(`session/${id}`)
 }, dispatch)
   
   export default connect(mapStateToProps, mapDispatchToProps)(RecentSessions)

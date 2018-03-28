@@ -27,11 +27,9 @@ export const getSessions = ids => {
         
       recentSession.get().then(doc => {
         if(doc.exists) {
-          recentSession.onSnapshot(session => {
-            dispatch({type: ADD_SESSION, payload: {...session.data(), id}})
-        })
+          dispatch({type: ADD_SESSION, payload: {...doc.data(), id}})
         }
       })
-      })
-    }
+    })
+  }
 }

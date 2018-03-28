@@ -12,7 +12,7 @@ import RecentSessions from './RecentSessions'
 const Home = ({changePage, createSession, isCreatingSession, setNewSessionInput, newSessionInput}) => {
   function handleNewSession (e) {
     e.preventDefault();
-    createSession(newSessionInput).then(id => changePage(id))
+    if (newSessionInput) createSession(newSessionInput).then(id => changePage(id))
   }
 
   function handleTitleChange (e) {
