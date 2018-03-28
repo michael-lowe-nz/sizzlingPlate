@@ -6,17 +6,7 @@ import rootReducer from './reducers'
 
 export const history = createHistory()
 
-const initialState = {
-  nav: {
-    showMenu: false
-  },
-  session: {
-    title: 'Where are you?',
-    dishInput: '',
-    dishes: [],
-    isCreatingSession: false,
-  }
-}
+const initialState = {}
 const enhancers = []
 const middleware = [
   thunk,
