@@ -1,4 +1,4 @@
-import reducer from './session';
+import reducer from './home';
 import expect from 'expect';
 
 describe('Home Reducer', () => {
@@ -9,13 +9,13 @@ describe('Home Reducer', () => {
 
     const expectedState = {
       recentSessions: [
-        {name: 'Big Party', id: '2'}
+        {title: 'Big Party', id: '2'}
       ]
     }
 
     const actualState = reducer(initialState, {
-      type: 'session/ADD_DISH',
-      payload: {name: 'Big Party', id: '2'}
+      type: 'home/ADD_SESSION',
+      payload: {title: 'Big Party', id: '2'}
     })
 
     expect(actualState).toEqual(expectedState)
