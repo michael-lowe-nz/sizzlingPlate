@@ -1,10 +1,5 @@
 import React from 'react'
 
-class Session extends React.Component {
-    
-    render() {
-        return <p>Im a fancy ass dish</p>
-    }
+export default ({title, id}) => {
+    return <button key={id} className="button is-outlined">{title}</button>
 }
-
-export default Session

@@ -56,20 +56,6 @@ const Home = ({changePage, createSession, isCreatingSession, setNewSessionInput,
             </div>
           </div>
           <RecentSessions sessionIds={localSessions}/>
-          <div className="columns is-multiline">
-            <div className="column is-12">
-              <h2>Recent sessions</h2>
-            </div>
-            {localSessions.map(session => {
-             return (
-              <div key={session} className="column is-12">
-                <a onClick={() => changePage(session)} className="button">
-                  Session: {session}
-                </a>
-              </div>
-             )
-            })}
-          </div>
         </div>
       </div>
     )

@@ -7,17 +7,13 @@ import {
 } from '../../reducers/home'
 
 class RecentSessions extends React.Component {
-    constructor(props) {
-        super(props)
-    }
     componentDidMount() {
-        console.log('comp did mount:', this.props.sessionIds)
         this.props.getSessions(this.props.sessionIds)
     }
     render() {
         return (
             <div>
-                {this.props.recentSessions.map(session => <Session key={session} />)}
+                {this.props.recentSessions.map(session => <Session key={session.id} {...session}/>)}
             </div>
         )
     }

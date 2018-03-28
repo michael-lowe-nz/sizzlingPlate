@@ -18,18 +18,6 @@ export default (state = initialState, { type, payload}) => {
   }
 }
 
-export const getSession = (id) => {
-    return dispatch => {
-        firebase.firestore()
-            .collection('session')
-            .doc(id)
-            .onSnapshot(session => {
-                console.log('session snapshot')
-                dispatch({type: ADD_SESSION, payload: session.data()})
-            })
-        }
-}
-
 export const getSessions = ids => {
   return dispatch => {
     ids.forEach(id => {
@@ -40,8 +28,7 @@ export const getSessions = ids => {
       recentSession.get().then(doc => {
         if(doc.exists) {
           recentSession.onSnapshot(session => {
-            console.log('session snapshot')
-            dispatch({type: ADD_SESSION, payload: session.data()})
+            dispatch({type: ADD_SESSION, payload: {...session.data(), id}})
         })
         }
       })
