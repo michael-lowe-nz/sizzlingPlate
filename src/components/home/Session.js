@@ -9,7 +9,7 @@ export default ({title, id, goToSession, location='unknown', created='?'}) => {
                         <h3 className="title is-5">{title}</h3>
                         <p className="subtitle is-6">{location}</p>
                     </div>
-                    <h3 className="column is-6 has-text-right">{created.toString()}</h3>
+                    <h3 className="column is-6 has-text-right-tablet">{created.toString()}</h3>
                 </div>
             </div>
         </div>

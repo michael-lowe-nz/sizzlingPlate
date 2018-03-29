@@ -4,12 +4,26 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {
   createSession,
-  setNewSessionInput
+  setNewSessionInput,
+  getRestaurauntSuggestions,
+  setRestaurauntSuggestions,
+  setRestaurauntInput
 } from '../../reducers/home'
 import MDSpinner from "react-md-spinner"
 import RecentSessions from './RecentSessions'
+import SelectRestauraunt from './SelectRestauraunt'
 
-const Home = ({changePage, createSession, isCreatingSession, setNewSessionInput, newSessionInput}) => {
+const Home = ({
+    changePage,
+    createSession,
+    isCreatingSession,
+    setNewSessionInput,
+    newSessionInput,
+    restaurauntSuggestions,
+    setRestaurauntSuggestions,
+    restaurauntInput,
+    setRestaurauntInput
+}) => {
   function handleNewSession (e) {
     e.preventDefault();
     if (newSessionInput) createSession(newSessionInput)
@@ -21,6 +35,10 @@ const Home = ({changePage, createSession, isCreatingSession, setNewSessionInput,
   function handleTitleChange (e) {
     e.preventDefault()
     setNewSessionInput(e.target.value)
+  }
+
+  function handleRestaurauntChange (e) {
+    setRestaurauntInput(e)
   }
   if(isCreatingSession) {
     const style = {
@@ -46,10 +64,22 @@ const Home = ({changePage, createSession, isCreatingSession, setNewSessionInput,
           <form onSubmit={handleNewSession} className="columns">
             <div className="column is-4">
               <div className="field">
+                <label className="label">Select Restauraunt</label>
+                  <div className="control">
+                    <SelectRestauraunt
+                      value={restaurauntInput}
+                      suggestions={restaurauntSuggestions}
+                      onChange={handleRestaurauntChange}
+                    />
+                  </div>
+              </div>
+            </div>
+            <div className="column is-4">
+              <div className="field">
                 <label className="label">Session Title</label>
                   <div className="control">
                     <input value={newSessionInput || ''} onChange={handleTitleChange} className="input"></input>
-                </div>
+                  </div>
               </div>
             </div>
           </form>
@@ -69,12 +99,16 @@ const mapDispatchToProps = dispatch =>
 bindActionCreators({
   changePage: (id) => push(`session/${id}`),
   createSession,
-  setNewSessionInput
+  setNewSessionInput,
+  setRestaurauntInput,
+  setRestaurauntSuggestions
 }, dispatch)
 
 const mapStateToProps = ({home}) => ({
   isCreatingSession: home.isCreatingSession,
-  newSessionInput: home.newSessionInput
+  newSessionInput: home.newSessionInput,
+  restaurauntSuggestions: home.restaurauntSuggestions,
+  restaurauntInput: home.restaurauntInput
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

@@ -3,10 +3,14 @@ import firebase from '../firebase'
 export const ADD_SESSION = 'home/ADD_SESSION'
 export const TOGGLE_CREATING_SESSION = 'home/TOGGLE_CREATING_SESSION'
 export const SET_NEW_SESSION_INPUT = 'home/SET_NEW_SESSION_INPUT'
+export const SET_RESTAURAUNT_INPUT = 'home/SET_RESTAURAUNT_INPUT'
+export const SET_RESTAURAUNT_SUGGESTIONS = 'home/SET_RESTAURAUNT_SUGGESTIONS'
 
 const initialState = {
   recentSessions: [],
   newSessionInput: '',
+  restaurauntInput: '',
+  restaurauntSuggestions: [],
 }
 
 export default (state = initialState, { type, payload}) => {
@@ -25,6 +29,16 @@ export default (state = initialState, { type, payload}) => {
       return {
         ...state,
         isCreatingSession: !state.isCreatingSession
+      }
+    case SET_RESTAURAUNT_INPUT: 
+      return {
+        ...state,
+        restaurauntInput: payload
+      }
+    case SET_RESTAURAUNT_SUGGESTIONS:
+      return {
+        ...state,
+        restaurauntSuggestions: payload
       }
     default:
       return state
@@ -68,5 +82,34 @@ export const setNewSessionInput = (value) => {
       type: SET_NEW_SESSION_INPUT,
       payload: value
     })
+  }
+}
+
+export const setRestaurauntInput = (value) => {
+  return dispatch => {
+    dispatch({
+      type: SET_RESTAURAUNT_INPUT,
+      payload: value
+    })
+  }
+}
+
+export const setRestaurauntSuggestions = (suggestions) => {
+  return dispatch => {
+    dispatch({
+      type: SET_RESTAURAUNT_SUGGESTIONS,
+      payload: suggestions
+    })
+  }
+}
+
+export const getRestaurauntSuggestions = (query) => {
+  return dispatch => {
+    firebase
+      .firestore()
+      .collection('restauraunts').get()
+      .then(response => {
+        console.log('response:', response.data())
+      })
   }
 }

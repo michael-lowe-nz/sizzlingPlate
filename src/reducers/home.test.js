@@ -53,4 +53,38 @@ describe('Home Reducer', () => {
 
     expect(actualState).toEqual(expectedState)
   })
+
+  it('can change restauraunt input', () => {
+    const initialState = {
+      restaurauntInput: '',
+    }
+
+    const expectedState = {
+      restaurauntInput: 'Ooglie Googlie'
+    }
+
+    const actualState = reducer(initialState, {
+      type: 'home/SET_RESTAURAUNT_INPUT',
+      payload: 'Ooglie Googlie'
+    })
+
+    expect(actualState).toEqual(expectedState)
+  })
+
+  it('can change restauraunt suggestions', () => {
+    const initialState = {
+      restaurauntSuggestions: [],
+    }
+
+    const expectedState = {
+      restaurauntSuggestions: ['Cha']
+    }
+
+    const actualState = reducer(initialState, {
+      type: 'home/SET_RESTAURAUNT_SUGGESTIONS',
+      payload: ['Cha']
+    })
+
+    expect(actualState).toEqual(expectedState)
+  })
 })
