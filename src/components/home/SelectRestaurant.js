@@ -10,8 +10,10 @@ import {
 
 const SelectRestaurant = (props) => {
     function handleOpen () {
-        props.toggleLoadingRestaurant()
-        props.getRestaurantSuggestions()
+        if (props.suggestions.length === 0) {
+            props.toggleLoadingRestaurant()
+            props.getRestaurantSuggestions()
+        }
     }
     return (
         <Select

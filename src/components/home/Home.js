@@ -40,7 +40,6 @@ const Home = ({
   }
 
   function handleRestaurantChange (value) {
-    toggleLoadingRestaurant()
     setRestaurantInput(value)
   }
 

@@ -117,10 +117,14 @@ export const getRestaurantSuggestions = (query) => {
       .collection('restaurant').get()
       .then(querySnapshots => {
         querySnapshots.forEach(snapshot => {
-          // dispatch({
-          //   type: ADD_RESTAURANT_SUGGESTIONS,
-          //   payload: snapshot.data()
-          // })
+          const restaurant = snapshot.data()
+          dispatch({
+            type: ADD_RESTAURANT_SUGGESTIONS,
+            payload: {
+              ...restaurant,
+              label: restaurant.name,
+              value: restaurant.name
+          }})
         })
       })
       .then(() => dispatch({type: TOGGLE_RESTAURANT_LOADING}))
