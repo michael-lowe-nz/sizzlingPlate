@@ -33,3 +33,13 @@
     width: 100%;
   }
 }
+
+.recent-session {
+  cursor: pointer;
+  border-bottom: solid 1px $light-grey;
+
+  &:hover {
+    background-color: $hover-grey;
+  }
+
+}
