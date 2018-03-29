@@ -54,35 +54,52 @@ describe('Home Reducer', () => {
     expect(actualState).toEqual(expectedState)
   })
 
-  it('can change restauraunt input', () => {
+  it('can change restaurant input', () => {
     const initialState = {
-      restaurauntInput: '',
+      restaurantInput: '',
     }
 
     const expectedState = {
-      restaurauntInput: 'Ooglie Googlie'
+      restaurantInput: 'Ooglie Googlie'
     }
 
     const actualState = reducer(initialState, {
-      type: 'home/SET_RESTAURAUNT_INPUT',
+      type: 'home/SET_RESTAURANT_INPUT',
       payload: 'Ooglie Googlie'
     })
 
     expect(actualState).toEqual(expectedState)
   })
 
-  it('can change restauraunt suggestions', () => {
+
+  it('can change restaurant suggestions', () => {
     const initialState = {
-      restaurauntSuggestions: [],
+      restaurantSuggestions: [],
     }
 
     const expectedState = {
-      restaurauntSuggestions: ['Cha']
+      restaurantSuggestions: ['Cha']
     }
 
     const actualState = reducer(initialState, {
-      type: 'home/SET_RESTAURAUNT_SUGGESTIONS',
-      payload: ['Cha']
+      type: 'home/ADD_RESTAURANT_SUGGESTIONS',
+      payload: 'Cha'
+    })
+
+    expect(actualState).toEqual(expectedState)
+  })
+
+  it('can change restaurant suggestions loading', () => {
+    const initialState = {
+      restaurantLoading: false,
+    }
+
+    const expectedState = {
+      restaurantLoading: true
+    }
+
+    const actualState = reducer(initialState, {
+      type: 'home/TOGGLE_RESTAURANT_LOADING'
     })
 
     expect(actualState).toEqual(expectedState)
