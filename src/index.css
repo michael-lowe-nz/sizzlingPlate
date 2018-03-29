@@ -8844,16 +8844,22 @@ label.panel-block {
 .addDish .has-icons-left {
   width: 100%; }
 
+@media screen and (min-width: 1023px) {
+  .navbar .is-active {
+    border-bottom: solid 3px #ff9100;
+    padding-bottom: 5px; } }
+
+.recent-sessions-title {
+  border-bottom: solid 2px #dedede;
+  background-color: white;
+  position: sticky;
+  top: 52px; }
+
 .recent-session {
   cursor: pointer;
   border-bottom: solid 1px #dedede; }
   .recent-session:hover {
     background-color: #f8f8f8; }
-
-@media screen and (min-width: 1023px) {
-  .navbar .is-active {
-    border-bottom: solid 3px #ff9100;
-    padding-bottom: 5px; } }
 
 .grow {
   transition: all .2s ease-in-out; }

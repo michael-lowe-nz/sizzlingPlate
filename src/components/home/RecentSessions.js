@@ -17,7 +17,9 @@ class RecentSessions extends React.Component {
     render() {
         return (
             <div className="columns is-multiline">
-                <div className="column is-12">Recent...</div>
+                <div className="column is-12 recent-sessions-title">
+                    <h2 className="title is-4">recent...</h2>
+                </div>
                 {this.props.recentSessions
                     .map(session => <Session key={session.id} {...session} goToSession={this.props.goToSession}/>)}
             </div>

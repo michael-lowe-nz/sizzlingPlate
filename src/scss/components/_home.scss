@@ -1,0 +1,18 @@
+@import '../colors';
+
+.recent-sessions-title {
+    border-bottom: solid 2px $light-grey;
+    background-color: white;
+    position: sticky;
+    top: 52px;
+}
+
+.recent-session {
+  cursor: pointer;
+  border-bottom: solid 1px $light-grey;
+
+  &:hover {
+    background-color: $hover-grey;
+  }
+
+}
