@@ -54,7 +54,7 @@ export const createSession = (title) => {
       const newSession = firebase.firestore()
         .collection('session')
         .doc()
-      newSession.set({title})
+      newSession.set({title, created: new Date()})
         .then(() => resolve(newSession.id))
         .then(() => dispatch({type: TOGGLE_CREATING_SESSION}))
         .catch(() => reject('Issue creating session'))
