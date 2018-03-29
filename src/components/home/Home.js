@@ -5,7 +5,6 @@ import {bindActionCreators} from 'redux'
 import {
   createSession,
   setNewSessionInput,
-  getRestaurauntSuggestions,
   setRestaurauntSuggestions,
   setRestaurauntInput
 } from '../../reducers/home'
