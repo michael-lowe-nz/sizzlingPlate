@@ -68,14 +68,18 @@ export const getSessions = ids => {
   }
 }
 
-export const createSession = (title) => {
+export const createSession = (title, restaurantPath) => {
   return function(dispatch) {
     return new Promise((resolve, reject) => {
       dispatch({type: TOGGLE_CREATING_SESSION})
       const newSession = firebase.firestore()
         .collection('session')
         .doc()
-      newSession.set({title, created: new Date()})
+      newSession.set({
+          title,
+          created: new Date(),
+          restauraunt: restaurantPath, 
+        })
         .then(() => resolve(newSession.id))
         .then(() => dispatch({type: TOGGLE_CREATING_SESSION}))
         .catch(() => reject('Issue creating session'))
@@ -122,6 +126,8 @@ export const getRestaurantSuggestions = (query) => {
             type: ADD_RESTAURANT_SUGGESTIONS,
             payload: {
               ...restaurant,
+              path: snapshot.ref.path,
+              id: snapshot.id,
               label: restaurant.name,
               value: restaurant.name
           }})

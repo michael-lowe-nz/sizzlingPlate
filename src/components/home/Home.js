@@ -28,7 +28,7 @@ const Home = ({
 }) => {
   function handleNewSession (e) {
     e.preventDefault();
-    if (newSessionInput) createSession(newSessionInput)
+    if (newSessionInput) createSession(newSessionInput, restaurantInput.path)
       .then(id => changePage(id))
       .then(() => setNewSessionInput(''))
       .catch(console.log)
