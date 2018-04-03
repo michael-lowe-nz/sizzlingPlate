@@ -21,6 +21,7 @@ class RecentSessions extends React.Component {
                     <h2 className="title is-4">recent...</h2>
                 </div>
                 {this.props.recentSessions
+                    .sort((a, b) => b.created - a.created)
                     .map(session => <Session key={session.id} {...session} goToSession={this.props.goToSession}/>)}
             </div>
         )
