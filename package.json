@@ -1,5 +1,6 @@
 {
   "name": "sizzling-plate-client",
+  "description": "React Frontend for SizzlingPlate",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
