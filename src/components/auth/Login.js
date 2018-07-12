@@ -1,12 +1,24 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 const loginContainerStyles = {
     display: 'flex',
     height: '100%',
     width: '100%',
-    justifyContent: 'center'
+    alignItems: 'center',
+    flexDirection: 'column',
+    padding: '50px 0',
+}
+
+const inputStyles = {
+    marginBottom: '10px',
+    width: '240px'
+}
+
+const loginButtonStyles = {
+    marginTop: '30px',
+    width: '240px'
 }
 
 class Login extends React.Component {
@@ -15,13 +27,15 @@ class Login extends React.Component {
             <div style={loginContainerStyles}>
                 <TextField
                     label="email"
+                    style={inputStyles}
                 />
                 <TextField
-                    label="Password"
+                    style={inputStyles}
+                    label="password"
                     type="password"
                     autoComplete="current-password"
-                    // margin="normal"
                 />
+                <Button style={loginButtonStyles} variant="contained">Login</Button>
             </div>
         )
     }
