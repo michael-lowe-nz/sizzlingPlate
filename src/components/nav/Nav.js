@@ -38,8 +38,8 @@ const Nav = ({toggleMenu, showMenu}) => {
         <Typography style={{flexGrow: '1'}} variant="title" color="inherit">
           <NavLink to='/' tag="a" className="navbar-item">sizzlingPlate</NavLink>
         </Typography>
-        <Button><NavLink to='/about'>About</NavLink></Button>
-        <Button><NavLink to='/session'>My Session</NavLink></Button>
+        <NavLink to='/about'><Button>About</Button></NavLink>
+        <NavLink to='/session'><Button>My Session </Button></NavLink>
       </Toolbar>
     </AppBar>
   )
