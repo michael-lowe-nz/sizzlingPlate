@@ -19,19 +19,9 @@ const styles = {
   flex: {
     flex: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
 };
 
-const Nav = ({toggleMenu, showMenu}) => {
-
-  function handleMenuBlur (e) {
-    e.preventDefault()
-    if(showMenu) toggleMenu()
-  }
-
+const Nav = () => {
   return (
     <AppBar position="sticky" color="default">
       <Toolbar>
@@ -43,22 +33,6 @@ const Nav = ({toggleMenu, showMenu}) => {
       </Toolbar>
     </AppBar>
   )
-
-  // return (
-  // <div className='navbar is-light is-fixed-top'>
-  //   <div className="container">
-  //     <div className="navbar-brand">
-  //       <NavLink to='/' tag="a" className="navbar-item">sizzlingPlate<i className="fa fa-delete"></i></NavLink>
-  //       <button onClick={toggleMenu} className={`button is-light navbar-burger ${showMenu ? "is-active" : ""}`}><span></span><span></span><span></span></button>
-  //     </div>
-  //     <div id="activeMenu" onBlur={handleMenuBlur} className={`navbar-menu ${showMenu ? "is-active" : ""}`}>
-  //       <div className="navbar-end">
-  //         <NavLink to='/about' activeClassName='is-active' tag='a' className='navbar-item'>About</NavLink>
-  //         <NavLink to='/session' activeClassName='is-active' tag='a' className='navbar-item'>My Session</NavLink>
-  //       </div>
-  //     </div>
-  //   </div>
-  // </div>)
 }
 
 const mapStateToProps = ({nav}) => ({
