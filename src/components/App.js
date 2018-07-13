@@ -1,5 +1,7 @@
 import React from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Router} from 'react-router-dom'
+import { Provider } from 'react-redux'
+import store, { history } from '../store'
 
 import WithAuthentication from './auth/WithAuthentication'
 import About from './about/About'
@@ -9,13 +11,17 @@ import Home from './home/Home'
 import Login from './auth/Login'
 
 const App = () => (
-  <div>
-    <Nav />
-    <Route exact path="/" component={Home} />
-    <Route exact path="/about" component={About} />
-    <Route path="/session/:id" component={Session} />
-    <Route path="/login" component={Login}/>
-  </div>
+  <Provider store={store}>
+    <Router history={history}>
+      <div>
+        <Nav />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/about" component={About} />
+        <Route path="/session/:id" component={Session} />
+        <Route path="/login" component={Login}/>
+      </div>
+    </Router>
+  </Provider>
 )
 
-export default WithAuthentication(App)
+export default App
