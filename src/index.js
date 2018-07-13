@@ -10,6 +10,8 @@ import './index.css'
 const target = document.querySelector('#root')
 
 render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   target
 )

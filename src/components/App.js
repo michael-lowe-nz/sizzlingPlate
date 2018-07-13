@@ -1,5 +1,8 @@
 import React from 'react';
-import { Route, Router} from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
 import { Provider } from 'react-redux'
 import store, { history } from '../store'
 
@@ -11,17 +14,15 @@ import Home from './home/Home'
 import Login from './auth/Login'
 
 const App = () => (
-  <Provider store={store}>
-    <Router history={history}>
-      <div>
-        <Nav />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
-        <Route path="/session/:id" component={Session} />
-        <Route path="/login" component={Login}/>
-      </div>
-    </Router>
-  </Provider>
+  <Router>
+    <div>
+      <Nav />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/about" component={About} />
+      <Route path="/session/:id" component={Session} />
+      <Route path="/login" component={Login}/>
+    </div>
+  </Router>
 )
 
 export default App

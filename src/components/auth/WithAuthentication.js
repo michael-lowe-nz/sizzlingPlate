@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import setUser from '../../reducers/auth'
 
-import firebase from '../../firebase';
+import firebase from '../firebase';
 
 const withAuthentication = (Component) => {
   class WithAuthentication extends React.Component {
