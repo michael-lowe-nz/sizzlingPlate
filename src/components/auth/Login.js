@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {push} from 'react-router-redux'
 import {bindActionCreators} from 'redux'
 import {
   login,
@@ -82,7 +83,8 @@ class Login extends React.Component {
 
 const mapDispatchToProps = dispatch =>
 bindActionCreators({
-  login
+    login,
+    goHome: () => push(`/`),
 }, dispatch)
 
 const mapStateToProps = ({ auth }) => ({

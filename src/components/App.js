@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
+
+import WithAuthentication from './auth/WithAuthentication'
 import About from './about/About'
 import Nav from './nav/Nav'
 import Session from './session/Session'
@@ -16,4 +18,4 @@ const App = () => (
   </div>
 )
 
-export default App
+export default WithAuthentication(App)

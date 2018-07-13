@@ -41,13 +41,24 @@ export const login = (email, password) => {
         dispatch({
           type: TOGGLE_LOGGED_IN
         })
-        dispatch({
-          type: SET_USER,
-          payload: response.data()
-        })
+        // dispatch({
+        //   type: SET_USER,
+        //   payload: response.email
+        // })
       })
       .catch(err => {
         console.log('Error logging in:', err)
       })
   }
 }
+
+// export const setUser = user => {
+//   console.log('set user:', user)
+//   return dispatch => {
+//     console.log('dispatching:', user.email)
+//     // dispatch({
+//     //   type: SET_USER,
+//     //   payload: user
+//     // })
+//   }
+// }

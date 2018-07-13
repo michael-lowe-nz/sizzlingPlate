@@ -21,7 +21,7 @@ const styles = {
   },
 };
 
-const Nav = () => {
+const Nav = ({isLoggedIn, user}) => {
   return (
     <AppBar position="sticky" color="default">
       <Toolbar>
@@ -30,13 +30,15 @@ const Nav = () => {
         </Typography>
         <NavLink to='/about'><Button>About</Button></NavLink>
         <NavLink to='/session'><Button>My Session </Button></NavLink>
+        { user ? <NavLink to='/session'><Button>{user}</Button></NavLink> : null}
       </Toolbar>
     </AppBar>
   )
 }
 
-const mapStateToProps = ({nav}) => ({
-  showMenu: nav.showMenu
+const mapStateToProps = ({ auth }) => ({
+  isLoggedIn: auth.isLoggedIn,
+  user: auth.user
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

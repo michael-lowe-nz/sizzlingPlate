@@ -1,18 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+
+import setUser from '../../reducers/auth'
 
 import firebase from '../../firebase';
 
 const withAuthentication = (Component) => {
   class WithAuthentication extends React.Component {
     componentDidMount() {
-      const { onSetAuthUser } = this.props;
-
-      firebase.auth.onAuthStateChanged(authUser => {
+      firebase.auth().onAuthStateChanged(authUser => {
         console.log('Auth status changed:', authUser);
         authUser
-          ? onSetAuthUser(authUser)
-          : onSetAuthUser(null);
+          ? this.props.setUser(authUser)
+          : this.props.setUser(null);
       });
     }
 
@@ -24,7 +25,7 @@ const withAuthentication = (Component) => {
   }
 
   const mapDispatchToProps = (dispatch) => ({
-    onSetAuthUser: (authUser) => dispatch({ type: 'AUTH_USER_SET', authUser }),
+    setUser: (authUser) => dispatch({ type: 'SET_USER', authUser }),
   });
 
   return connect(null, mapDispatchToProps)(WithAuthentication);
