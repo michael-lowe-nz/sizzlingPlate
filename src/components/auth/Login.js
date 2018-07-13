@@ -55,7 +55,9 @@ class Login extends React.Component {
     }
 
     handleSubmit () {
-        this.props.login(this.state.email, this.state.password)
+        this.props.goHome()
+        // this.props.login(this.state.email, this.state.password)
+        //     .then(() => this.props.goHome())
     }
 
     render() {

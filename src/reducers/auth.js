@@ -1,4 +1,5 @@
 import firebase from '../firebase'
+import { resolve } from 'path';
 
 export const TOGGLE_LOGGED_IN = 'auth/TOGGLE_LOGGED_IN'
 export const SET_USER = 'auth/SET_USER'
@@ -33,22 +34,25 @@ export default (state = initialState, { type, payload }) => {
 
 export const login = (email, password) => {
   return dispatch => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(response => {
-        console.log('Logged In', response)
-        dispatch({
-          type: TOGGLE_LOGGED_IN
+    return new Promise((resolve, reject) => {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(response => {
+          dispatch({
+            type: TOGGLE_LOGGED_IN
+          })
+          resolve(response)
+          // dispatch({
+          //   type: SET_USER,
+          //   payload: response.email
+          // })
         })
-        // dispatch({
-        //   type: SET_USER,
-        //   payload: response.email
-        // })
-      })
-      .catch(err => {
-        console.log('Error logging in:', err)
-      })
+        .catch(err => {
+          console.log('Error logging in:', err)
+          reject(err)
+        })
+    })
   }
 }
 
