@@ -1,4 +1,10 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {
+  login,
+} from '../../reducers/auth'
+
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
@@ -22,23 +28,66 @@ const loginButtonStyles = {
 }
 
 class Login extends React.Component {
+    constructor(props) {
+        super(props)
+        this.handleEmailChange = this.handleEmailChange.bind(this)
+        this.handlePasswordChange = this.handlePasswordChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.state = {
+          email: '',
+          password: '',
+        }
+    }
+
+    handleEmailChange (e) {
+        e.preventDefault()
+        this.setState({
+            email: e.target.value
+        })
+    }
+
+    handlePasswordChange (e) {
+        e.preventDefault()
+        this.setState({
+            password: e.target.value
+        })
+    }
+
+    handleSubmit () {
+        this.props.login(this.state.email, this.state.password)
+    }
+
     render() {
         return (
             <div style={loginContainerStyles}>
+                <p>{this.props.isLoggedIn ? 'Logged In!' : 'Please login...'}</p>
                 <TextField
                     label="email"
                     style={inputStyles}
+                    value={this.state.email}
+                    onChange={this.handleEmailChange}
                 />
                 <TextField
                     style={inputStyles}
                     label="password"
                     type="password"
-                    autoComplete="current-password"
+                    value={this.state.password}
+                    onChange={this.handlePasswordChange}
                 />
-                <Button style={loginButtonStyles} variant="contained">Login</Button>
+                <Button onClick={this.handleSubmit} type="submit" style={loginButtonStyles} variant="contained">Login</Button>
             </div>
         )
     }
 }
 
-export default Login
+const mapDispatchToProps = dispatch =>
+bindActionCreators({
+  login
+}, dispatch)
+
+const mapStateToProps = ({ auth }) => ({
+  isLoggedIn: auth.isLoggedIn,
+  user: auth.user,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
