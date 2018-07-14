@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux'
 import {
   login,
 } from '../../reducers/auth'
+import { auth } from '../../firebase';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -37,6 +38,8 @@ class Login extends React.Component {
         this.state = {
           email: '',
           password: '',
+          isSigningIn: false,
+          error: null
         }
     }
 
@@ -55,7 +58,23 @@ class Login extends React.Component {
     }
 
     handleSubmit () {
-        this.props.goHome()
+        this.setState({
+            isSigningIn: true,
+            error: null
+        })
+        auth.doSignInWithEmailAndPassword(this.state.email, this.state.password)
+            .then(user => {
+                console.log('Signed In', user)
+                this.props.history.push('/about')
+            })
+            .catch(error => {
+                console.log('error:', error);
+                this.setState({
+                    error,
+                    isSigningIn: false
+                })
+            })
+        // this.props.goHome()
         // this.props.login(this.state.email, this.state.password)
         //     .then(() => this.props.goHome())
     }
@@ -77,7 +96,15 @@ class Login extends React.Component {
                     value={this.state.password}
                     onChange={this.handlePasswordChange}
                 />
-                <Button onClick={this.handleSubmit} type="submit" style={loginButtonStyles} variant="contained">Login</Button>
+                {this.state.isSigningIn ?
+                    <p>Please Wait...</p> :
+                    <Button onClick={this.handleSubmit} type="submit" style={loginButtonStyles} variant="contained">Login</Button>
+                }
+                {
+                    this.state.error ?
+                    <p style={{color: 'red'}}>{this.state.error.message}</p> :
+                    null
+                }
             </div>
         )
     }

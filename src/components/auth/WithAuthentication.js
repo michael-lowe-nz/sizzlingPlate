@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 
 import setUser from '../../reducers/auth'
 
-import firebase from '../firebase';
+import {firebase} from '../../firebase';
 
 const withAuthentication = (Component) => {
   class WithAuthentication extends React.Component {
     componentDidMount() {
-      firebase.auth().onAuthStateChanged(authUser => {
+      firebase.auth.onAuthStateChanged(authUser => {
         console.log('Auth status changed:', authUser);
         authUser
           ? this.props.setUser(authUser)

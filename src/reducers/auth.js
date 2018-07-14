@@ -1,4 +1,4 @@
-import firebase from '../firebase'
+import { firebase, auth } from '../firebase'
 import { resolve } from 'path';
 
 export const TOGGLE_LOGGED_IN = 'auth/TOGGLE_LOGGED_IN'
