@@ -1,23 +1,17 @@
-import React from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { toggleMenu } from '../../reducers/nav'
-import { NavLink, withRouter } from 'react-router-dom'
-
-import { withStyles } from '@material-ui/core/styles'
-
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import AccountCircle from '@material-ui/icons/AccountCircle'
-import Switch from '@material-ui/core/Switch'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormGroup from '@material-ui/core/FormGroup'
-import MenuItem from '@material-ui/core/MenuItem'
-import Menu from '@material-ui/core/Menu'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 
 const styles = {
   root: {
@@ -26,84 +20,82 @@ const styles = {
   flex: {
     flex: 1,
   },
-}
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+};
 
-class Nav extends React.Component {
+class MenuAppBar extends React.Component {
   state = {
+    auth: true,
     anchorEl: null,
-  }
+  };
 
   handleChange = (event, checked) => {
-    this.setState({ auth: checked })
-  }
+    this.setState({ auth: checked });
+  };
 
   handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget })
-  }
+    this.setState({ anchorEl: event.currentTarget });
+  };
 
-  handleClose = () => {
-    this.setState({ anchorEl: null })
-  }
+  // handleClose = () => {
+  //   this.setState({ anchorEl: null });
+  // };
 
   render() {
-    const { anchorEl } = this.state
-    const { user } = this.props
-    const open = Boolean(anchorEl)
+    const { classes } = this.props;
+    const { auth, anchorEl } = this.state;
+    const open = Boolean(anchorEl);
 
     return (
-      <AppBar position="sticky" color="default">
-        <Toolbar>
-          <Typography style={{ flexGrow: '1' }} variant="title" color="inherit">
-            <NavLink to='/' tag="a" className="navbar-item">sizzlingPlate</NavLink>
-          </Typography>
-          <NavLink to='/about'><Button>About</Button></NavLink>
-          {user ?
-            <div>
-              <IconButton
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="title" color="inherit" className={classes.flex}>
+              Title
+            </Typography>
+            {true && (
+              <div>
+                <IconButton
                   aria-owns={open ? 'menu-appbar' : null}
                   aria-haspopup="true"
                   onClick={this.handleMenu}
                   color="inherit"
                 >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={this.handleClose}
-              >
-                <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                <MenuItem onClick={this.handleClose}>My account</MenuItem>
-              </Menu>
-            </div>
-            :
-            <NavLink to='/login'><Button variant="contained">Login</Button></NavLink>
-          }
-        </Toolbar>
-      </AppBar>
-    )
+                  <AccountCircle />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={open}
+                >
+                  <MenuItem>Profile</MenuItem>
+                  <MenuItem>My account</MenuItem>
+                </Menu>
+              </div>
+            )}
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
   }
 }
 
-// const Nav = ({ user }) => {
+MenuAppBar.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
-// }
-
-const mapStateToProps = ({ auth }) => ({
-  user: auth.user
-})
-
-const mapDispatchToProps = dispatch => bindActionCreators({
-  toggleMenu
-}, dispatch)
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Nav)))
+export default withStyles(styles)(MenuAppBar);
