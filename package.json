@@ -1,5 +1,6 @@
 {
   "name": "sizzling-plate-client",
+  "description": "React Frontend for SizzlingPlate",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -32,7 +33,7 @@
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp build/index.html build/404.html",
     "deploy": "npm build && aws s3 sync ./build s3://sizzling-plate --delete",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
