@@ -18,7 +18,6 @@ export default (state = initialState, { type, payload }) => {
         isLoggedIn: !state.isLoggedIn
       }
     case SET_USER:
-      console.log('Setting user', payload)
       return {
         ...state,
         user: payload
