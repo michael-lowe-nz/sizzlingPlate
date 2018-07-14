@@ -77,7 +77,6 @@ class Login extends React.Component {
     render() {
         return (
             <div style={loginContainerStyles}>
-                <p>{this.props.isLoggedIn ? 'Logged In!' : 'Please login...'}</p>
                 <TextField
                     label="email"
                     style={inputStyles}

@@ -10,7 +10,6 @@ import {
 import MDSpinner from "react-md-spinner"
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 
-import WithAuthentication from '../auth/WithAuthentication'
 import Dishes from './Dishes'
 
 class Session extends React.Component {
