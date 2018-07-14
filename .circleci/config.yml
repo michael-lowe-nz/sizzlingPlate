@@ -4,9 +4,9 @@ jobs:
     docker:
       - image: circleci/node:6.10-browsers
     steps:
-      - run:
-          name: Install dependencies
-          command: sudo apt-get -y -qq install awscli
+    #   - run:
+    #       name: Install dependencies
+    #       command: sudo apt-get -y -qq install awscli
       - checkout
       - run:
           name: Install
@@ -14,12 +14,13 @@ jobs:
       - run:
           name: Test
           command: npm test
+     
       - run:
           name: Trigger Netlify Deployment
           command: curl -X POST -d '' https://api.netlify.com/build_hooks/$netlify_deployment_url
-      - run:
-          name: Build
-          command: npm run build
+    #   - run:
+    #       name: Build
+    #       command: npm run build
     #   - run:
     #       name: Deploy to SizzlingPlate
     #       command: aws s3 sync ./build s3://sizzling-plate/ --delete --region=ap-southeast-2
