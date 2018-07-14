@@ -64,19 +64,14 @@ class Login extends React.Component {
         })
         auth.doSignInWithEmailAndPassword(this.state.email, this.state.password)
             .then(user => {
-                console.log('Signed In', user)
                 this.props.history.push('/about')
             })
             .catch(error => {
-                console.log('error:', error);
                 this.setState({
                     error,
                     isSigningIn: false
                 })
             })
-        // this.props.goHome()
-        // this.props.login(this.state.email, this.state.password)
-        //     .then(() => this.props.goHome())
     }
 
     render() {

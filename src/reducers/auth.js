@@ -18,6 +18,7 @@ export default (state = initialState, { type, payload }) => {
         isLoggedIn: !state.isLoggedIn
       }
     case SET_USER:
+      console.log('Setting user', payload)
       return {
         ...state,
         user: payload
@@ -56,13 +57,11 @@ export const login = (email, password) => {
   }
 }
 
-// export const setUser = user => {
-//   console.log('set user:', user)
-//   return dispatch => {
-//     console.log('dispatching:', user.email)
-//     // dispatch({
-//     //   type: SET_USER,
-//     //   payload: user
-//     // })
-//   }
-// }
+export const setUser = user => {
+  return dispatch => {
+    dispatch({
+      type: SET_USER,
+      payload: user
+    })
+  }
+}

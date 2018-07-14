@@ -21,23 +21,24 @@ const styles = {
   },
 };
 
-const Nav = ({isLoggedIn, user}) => {
+const Nav = ({ user }) => {
   return (
     <AppBar position="sticky" color="default">
       <Toolbar>
         <Typography style={{flexGrow: '1'}} variant="title" color="inherit">
           <NavLink to='/' tag="a" className="navbar-item">sizzlingPlate</NavLink>
         </Typography>
+        { user ?
+          <NavLink to='/session'><Button>{user.email}</Button></NavLink> :
+          <NavLink to='/login'><Button>Login</Button></NavLink>
+        }
         <NavLink to='/about'><Button>About</Button></NavLink>
-        <NavLink to='/session'><Button>My Session </Button></NavLink>
-        { user ? <NavLink to='/session'><Button>{user}</Button></NavLink> : null}
       </Toolbar>
     </AppBar>
   )
 }
 
 const mapStateToProps = ({ auth }) => ({
-  isLoggedIn: auth.isLoggedIn,
   user: auth.user
 })
 
