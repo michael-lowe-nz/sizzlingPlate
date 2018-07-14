@@ -4,11 +4,18 @@ import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 import { auth } from '../../firebase'
 
+const profileContainerStyles = {
+    flexDirection: 'column',
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+}
 
 const Profile = ({ user, logout, history }) => (
-    <div>
-        <h1>{user && user.email}</h1>
-        <Button onClick={() => {
+    <div style={profileContainerStyles}>
+        <a href={`mail-to:${user}`}>{user && user.email}</a>
+        <Button variant="contained" color="secondary" onClick={() => {
             console.log('Logging out');
             auth.doSignOut()
                 .then(() => history.push('/login'))
