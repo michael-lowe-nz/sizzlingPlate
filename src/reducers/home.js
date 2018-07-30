@@ -1,4 +1,4 @@
-import {firebase} from '../firebase'
+import { firebase } from '../firebase'
 
 export const ADD_SESSION = 'home/ADD_SESSION'
 export const TOGGLE_CREATING_SESSION = 'home/TOGGLE_CREATING_SESSION'

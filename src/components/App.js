@@ -13,8 +13,8 @@ const App = () => (
   <Router>
     <div>
       <Nav />
-      <Route exact path="/" component={Home} />
-      <Route exact path="/about" component={About} />
+      <Route exact path="/" component={About} />
+      <Route exact path="/about" component={Home} />
       <Route path="/session/:id" component={Session} />
       <Route path="/login" component={Login}/>
       <Route path="/profile" component={Profile} />

@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {firebase} from '../../firebase';
+import { firebase } from '../../firebase';
 
-const withAuthentication = (Component) => {
+import MDSpinner from "react-md-spinner"
+
+const withAuthentication = Component => {
   class WithAuthentication extends React.Component {
     componentDidMount() {
       firebase.auth.onAuthStateChanged(authUser => {
@@ -16,9 +18,18 @@ const withAuthentication = (Component) => {
     }
 
     render() {
-      return (
+      console.log('this.props', this.props.user)
+      return this.props.user ?
         <Component />
-      );
+        :
+        <div style={{
+          height: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <MDSpinner size={80}/>
+        </div>
     }
   }
 
@@ -26,7 +37,11 @@ const withAuthentication = (Component) => {
     setUser: (authUser) => dispatch({ type: 'auth/SET_USER', payload: authUser }),
   });
 
-  return connect(null, mapDispatchToProps)(WithAuthentication);
+  const mapStateToProps = ({ auth }) => ({
+    user: auth.user
+  })
+
+  return connect(mapStateToProps, mapDispatchToProps)(WithAuthentication);
 }
 
 export default withAuthentication;

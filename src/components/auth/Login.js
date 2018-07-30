@@ -76,9 +76,6 @@ class Login extends React.Component {
     }
 
     render() {
-        // if (this.state.user.isLoggedIn) {
-        //     <h1></h1>
-        // }
         return (
             <form onSubmit={this.handleSubmit} style={loginContainerStyles}>
                 <TextField

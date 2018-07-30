@@ -1,5 +1,6 @@
 import React from 'react'
 import {push} from 'react-router-redux'
+import { Redirect } from 'react-router'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {
@@ -24,8 +25,10 @@ const Home = ({
     restaurantInput,
     setRestaurantInput,
     toggleLoadingRestaurant,
-    restaurantLoading
+    restaurantLoading,
+    auth
 }) => {
+
   function handleNewSession (e) {
     e.preventDefault();
     if (newSessionInput) createSession(newSessionInput)
@@ -41,6 +44,11 @@ const Home = ({
 
   function handleRestaurantChange (value) {
     setRestaurantInput(value)
+  }
+
+  console.log('Auth:', auth);
+  if (!auth.isLoggedIn) {
+    return <Redirect to="/login" />
   }
 
   if(isCreatingSession) {
@@ -109,12 +117,13 @@ bindActionCreators({
   toggleLoadingRestaurant
 }, dispatch)
 
-const mapStateToProps = ({home}) => ({
+const mapStateToProps = ({ home, auth, isLoggedIn }) => ({
   isCreatingSession: home.isCreatingSession,
   newSessionInput: home.newSessionInput,
   restaurantSuggestions: home.restaurantSuggestions,
   restaurantInput: home.restaurantInput,
-  restaurantLoading: home.restaurantLoading
+  restaurantLoading: home.restaurantLoading,
+  auth
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
