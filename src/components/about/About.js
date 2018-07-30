@@ -1,15 +1,20 @@
 import React from 'react'
+import Button from '@material-ui/core/Button';
 
 const About = () => {
   return (
   <div className='container'>
     <div className='section'>
-      <div className='columns is-multiline'>
+      <div className='columns is-multiline is-centered'>
         <div className='column is-4'>
           <div className='content'>
-            <h1>sizzlingPlate</h1>
-            <p>Meal time collaboration can be hard, sizzling plate makes it easy.</p>
-            <p>You find yourself in a tapas/communal ordering situation, its hard to order. The waiter comes around, who is gonna step up and do the actual ordering? Has the person remembered everyone's requests? Chances are that they haven't.</p>
+            <h1 className="title is-2">sizzlingPlate</h1>
+            <p className="subtitle is-4">go out for dinner. lots.</p>
+            <Button variant="contained" style={{
+              backgroundColor: "#25CCF7"
+            }}>
+              Get Started
+            </Button>
           </div>
         </div>
       </div>

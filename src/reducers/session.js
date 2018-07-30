@@ -1,4 +1,4 @@
-import firebase from '../firebase'
+import { firebase } from '../firebase'
 
 export const ADD_DISH = 'session/ADD_DISH'
 export const REMOVE_DISH = 'session/REMOVE_DISH'

@@ -1,4 +1,4 @@
-import firebase from '../firebase'
+import { firebase } from '../firebase'
 
 export const ADD_SESSION = 'home/ADD_SESSION'
 export const TOGGLE_CREATING_SESSION = 'home/TOGGLE_CREATING_SESSION'
@@ -55,15 +55,15 @@ export default (state = initialState, { type, payload}) => {
 export const getSessions = ids => {
   return dispatch => {
     ids.forEach(id => {
-      const recentSession = firebase.firestore()
-          .collection('session')
-          .doc(id)
+      // const recentSession = firebase.firestore()
+      //     .collection('session')
+      //     .doc(id)
         
-      recentSession.get().then(doc => {
-        if(doc.exists) {
-          dispatch({type: ADD_SESSION, payload: {...doc.data(), id}})
-        }
-      })
+      // recentSession.get().then(doc => {
+      //   if(doc.exists) {
+      //     dispatch({type: ADD_SESSION, payload: {...doc.data(), id}})
+      //   }
+      // })
     })
   }
 }
@@ -116,25 +116,23 @@ export const setRestaurantSuggestions = (suggestions) => {
 
 export const getRestaurantSuggestions = (query) => {
   return dispatch => {
-    firebase
-      .firestore()
-      .collection('restaurant').get()
-      .then(querySnapshots => {
-        querySnapshots.forEach(snapshot => {
-          const restaurant = snapshot.data()
-          dispatch({
-            type: ADD_RESTAURANT_SUGGESTIONS,
-            payload: {
-              ...restaurant,
-              path: snapshot.ref.path,
-              id: snapshot.id,
-              label: restaurant.name,
-              value: restaurant.name
-          }})
-        })
-      })
-      .then(() => dispatch({type: TOGGLE_RESTAURANT_LOADING}))
-      .catch(console.log)
+    // firebase
+    //   .firestore()
+    //   .collection('restaurant').get()
+    //   .then(querySnapshots => {
+    //     querySnapshots.forEach(snapshot => {
+    //       const restaurant = snapshot.data()
+    //       dispatch({
+    //         type: ADD_RESTAURANT_SUGGESTIONS,
+    //         payload: {
+    //           ...restaurant,
+    //           label: restaurant.name,
+    //           value: restaurant.name
+    //       }})
+    //     })
+    //   })
+    //   .then(() => dispatch({type: TOGGLE_RESTAURANT_LOADING}))
+    //   .catch(console.log)
   }
 }
 
