@@ -57,7 +57,8 @@ class Login extends React.Component {
         })
     }
 
-    handleSubmit () {
+    handleSubmit (e) {
+        e.preventDefault()
         this.setState({
             isSigningIn: true,
             error: null
@@ -75,8 +76,11 @@ class Login extends React.Component {
     }
 
     render() {
+        // if (this.state.user.isLoggedIn) {
+        //     <h1></h1>
+        // }
         return (
-            <div style={loginContainerStyles}>
+            <form onSubmit={this.handleSubmit} style={loginContainerStyles}>
                 <TextField
                     label="email"
                     style={inputStyles}
@@ -99,7 +103,7 @@ class Login extends React.Component {
                     <p style={{color: 'red'}}>{this.state.error.message}</p> :
                     null
                 }
-            </div>
+            </form>
         )
     }
 }
