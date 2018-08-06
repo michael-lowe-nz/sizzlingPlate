@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
+import { Redirect } from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import {
   login,
@@ -76,9 +77,17 @@ class Login extends React.Component {
     }
 
     render() {
+        if(this.props.user) {
+            return <Redirect to={{
+                pathname: "/",
+                state: { from: this.props.location }
+            }}/>
+        }
+
         return (
             <form onSubmit={this.handleSubmit} style={loginContainerStyles}>
                 <TextField
+                    autoFocus
                     label="email"
                     style={inputStyles}
                     value={this.state.email}
