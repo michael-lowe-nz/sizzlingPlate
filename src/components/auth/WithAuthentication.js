@@ -18,18 +18,7 @@ const withAuthentication = Component => {
     }
 
     render() {
-      console.log('this.props', this.props.user)
-      return this.props.user ?
-        <Component />
-        :
-        <div style={{
-          height: '100vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}>
-          <MDSpinner size={80}/>
-        </div>
+      return <Component />
     }
   }
 

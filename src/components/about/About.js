@@ -9,7 +9,7 @@ const About = () => {
         <div className='column is-4'>
           <div className='content'>
             <h1 className="title is-2">sizzlingPlate</h1>
-            <p className="subtitle is-4">go out for dinner. lots.</p>
+            <p className="subtitle is-4">keep a dinner log. nail quantities</p>
             <Button variant="contained" style={{
               backgroundColor: "#25CCF7"
             }}>

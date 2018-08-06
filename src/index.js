@@ -3,14 +3,18 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import store from './store'
 import App from './components/App'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
-import './index.css'
+import 'typeface-roboto'
 
 const target = document.querySelector('#root')
 
 render(
   <Provider store={store}>
-    <App />
+    <React.Fragment>
+      <CssBaseline />
+      <App />
+    </React.Fragment>
   </Provider>,
   target
 )
