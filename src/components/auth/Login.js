@@ -66,7 +66,7 @@ class Login extends React.Component {
         })
         auth.doSignInWithEmailAndPassword(this.state.email, this.state.password)
             .then(user => {
-                this.props.history.push('/about')
+                this.props.history.push('/home')
             })
             .catch(error => {
                 this.setState({
@@ -79,6 +79,7 @@ class Login extends React.Component {
     render() {
         if(this.props.user) {
             return <Redirect to={{
+                // pathname: "/home",
                 pathname: "/",
                 state: { from: this.props.location }
             }}/>

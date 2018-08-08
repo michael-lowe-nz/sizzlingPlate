@@ -1,6 +1,7 @@
 import React from 'react'
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
 import { css } from 'emotion'
+import { Link } from 'react-router-dom'
 
 const rootStyles = css`
   display: flex;
@@ -8,9 +9,8 @@ const rootStyles = css`
   padding-top: 2em;
 `
 
-const buttonStyles = css`
-  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+const linkStyles = css`
+  text-decoration: none;
 `
 
 const Landing = () => {
@@ -19,9 +19,11 @@ const Landing = () => {
       <div>
         <h1 className="title is-2">sizzlingPlate</h1>
         <p className="subtitle is-4">keep a dinner log. nail quantities</p>
-        <Button variant="contained">
-          Get Started
-        </Button>
+        <Link className={linkStyles} to="/home">
+            <Button variant="contained">
+                Get Started
+            </Button>
+        </Link>
       </div>
     </div>
 )}
