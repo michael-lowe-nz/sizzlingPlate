@@ -4,8 +4,8 @@ import { Provider } from 'react-redux'
 import store from './store'
 import App from './components/App'
 import CssBaseline from '@material-ui/core/CssBaseline'
-
 import 'typeface-roboto'
+import './index.css'
 
 const target = document.querySelector('#root')
 
