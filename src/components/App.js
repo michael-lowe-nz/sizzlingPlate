@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import WithAuthentication from './auth/WithAuthentication'
-import About from './about/About'
+import Landing from './landing/Landing'
 import Nav from './nav/Nav'
 import Session from './session/Session'
 import Home from './home/Home'
@@ -13,7 +13,7 @@ const App = () => (
   <Router>
     <div>
       <Nav />
-      <Route exact path="/" component={About} />
+      <Route exact path="/" component={Landing} />
       <Route exact path="/about" component={Home} />
       <Route path="/session/:id" component={Session} />
       <Route path="/login" component={Login}/>

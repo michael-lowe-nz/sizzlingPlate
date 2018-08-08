@@ -1,9 +1,11 @@
 export const TOGGLE_LOGGED_IN = 'auth/TOGGLE_LOGGED_IN'
 export const SET_USER = 'auth/SET_USER'
 export const REMOVE_USER = 'auth/REMOVE_USER'
+export const TOGGLE_DETERMINING_USER = 'auth/TOGGLE_DETERMINING_USER'
 
 const initialState = {
   isLoggedIn: false,
+  isDeterminingUser: false,
   user: null
 }
 
@@ -23,6 +25,12 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         user: null
+      }
+    case TOGGLE_DETERMINING_USER:
+      console.log('togglin')
+      return {
+        ...state,
+        isDeterminingUser: !state.isDeterminingUser
       }
     default:
       return state

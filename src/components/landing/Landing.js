@@ -1,5 +1,6 @@
 import React from 'react'
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
 
 const About = () => {
   return (
@@ -10,11 +11,13 @@ const About = () => {
           <div className='content'>
             <h1 className="title is-2">sizzlingPlate</h1>
             <p className="subtitle is-4">go out for dinner. lots.</p>
-            <Button variant="contained" style={{
-              backgroundColor: "#25CCF7"
-            }}>
-              Get Started
-            </Button>
+            <Link to="/home">
+              <Button variant="contained" style={{
+                backgroundColor: "#25CCF7"
+              }}>
+                Get Started
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
