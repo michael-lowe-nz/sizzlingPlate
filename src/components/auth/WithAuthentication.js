@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 import { firebase } from '../../firebase';
 
-import MDSpinner from "react-md-spinner"
-
 const withAuthentication = Component => {
   class WithAuthentication extends React.Component {
     componentDidMount() {

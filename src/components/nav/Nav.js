@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { toggleMenu } from '../../reducers/nav'
 import { NavLink, withRouter } from 'react-router-dom'
 
-import { withStyles } from '@material-ui/core/styles'
 import { css } from 'emotion'
 
 import AppBar from '@material-ui/core/AppBar'
@@ -16,7 +15,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 
 class Nav extends React.Component {
   render() {
-    const { classes } = this.props;
 
     const rootStyles = css`
       flex-grow: 1;
