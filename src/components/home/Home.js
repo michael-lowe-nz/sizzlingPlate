@@ -47,7 +47,7 @@ const Home = ({
   }
 
   console.log('Auth:', auth);
-  if (!auth.isLoggedIn) {
+  if (!auth.user) {
     return <Redirect to="/login" />
   }
 

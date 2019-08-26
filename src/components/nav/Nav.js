@@ -5,7 +5,6 @@ import { toggleMenu } from '../../reducers/nav'
 import { NavLink, withRouter } from 'react-router-dom'
 
 import { withStyles } from '@material-ui/core/styles'
-import PropTypes from 'prop-types';
 import { css } from 'emotion'
 
 import AppBar from '@material-ui/core/AppBar'
@@ -41,9 +40,11 @@ class Nav extends React.Component {
       <div className={rootStyles}>
         <AppBar className={toolbar} position="static">
           <Toolbar>
-            <Typography variant="title" color="inherit" className={flex}>
-              sizzlingPlate
-            </Typography>
+            <NavLink className={flex} to="/">
+              <Typography variant="title" color="inherit">
+                sizzlingPlate
+              </Typography>
+            </NavLink>
             {this.props.user ?
               <NavLink className={menuButtonStyles} to='/profile'>
                 <IconButton color="inherit">
