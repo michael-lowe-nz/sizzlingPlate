@@ -16,19 +16,6 @@ import IconButton from '@material-ui/core/IconButton'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import MenuIcon from '@material-ui/icons/Menu'
 
-const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  flex: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-};
-
 class Nav extends React.Component {
   render() {
     const { classes } = this.props;
@@ -54,7 +41,7 @@ class Nav extends React.Component {
       <div className={rootStyles}>
         <AppBar className={toolbar} position="static">
           <Toolbar>
-            <Typography variant="title" color="inherit" className={classes.flex}>
+            <Typography variant="title" color="inherit" className={flex}>
               sizzlingPlate
             </Typography>
             {this.props.user ?
@@ -71,26 +58,6 @@ class Nav extends React.Component {
           </Toolbar>
         </AppBar>
       </div>
-      // <AppBar position="sticky" color="default">
-      //   <Toolbar>
-      //     <Typography style={{ flexGrow: '1' }} variant="title" color="inherit">
-      //       {/* <NavLink to='/' className="navbar-item">sizzlingPlate</NavLink> */}
-      //       sizzlingPlate
-      //     </Typography>
-      //     <NavLink to='/about'><Button>About</Button></NavLink>
-      //     {this.props.user ?
-      //       <div>
-      //         <NavLink to='/profile'>
-      //           <IconButton color="inherit">
-      //             <AccountCircle />
-      //           </IconButton>
-      //         </NavLink>
-      //       </div>
-      //       :
-      //       <NavLink to='/login'><Button variant="contained">Login</Button></NavLink>
-      //     }
-      //   </Toolbar>
-      // </AppBar>
     )
   }
 }
@@ -103,4 +70,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   toggleMenu
 }, dispatch)
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Nav)))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav))

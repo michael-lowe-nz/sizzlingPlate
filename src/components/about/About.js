@@ -1,27 +1,16 @@
 import React from 'react'
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 const About = () => {
   return (
-  <div className='container'>
-    <div className='section'>
-      <div className='columns is-multiline is-centered'>
-        <div className='column is-4'>
-          <div className='content'>
-            <h1 className="title is-2">sizzlingPlate</h1>
-            <p className="subtitle is-4">keep a dinner log. nail quantities</p>
-            <Button variant="contained" style={{
-              backgroundColor: "#25CCF7"
-            }}>
-              Get Started
-            </Button>
-          </div>
-        </div>
-      </div>
-      <div>
-      </div>
-    </div>
-  </div>
+  <Grid>
+    <h1>sizzlingPlate</h1>
+    <p>keep a dinner log. nail quantities</p>
+    <Button variant="contained">
+      Get Started
+    </Button>
+  </Grid>
 )}
 
 export default About
